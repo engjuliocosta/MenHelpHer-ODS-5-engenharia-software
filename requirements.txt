@@ -1,0 +1,11 @@
+Django>=4.2
+djangorestframework
+pandas
+plotly
+psycopg2-binary
+whitenoise
+django-crispy-forms
+pytest
+pytest-django
+python-dotenv
+qrcode
