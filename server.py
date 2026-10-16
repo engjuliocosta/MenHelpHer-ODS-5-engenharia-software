@@ -172,13 +172,14 @@ def main():
         print(f"================================================================")
         print(f" EquiTech ODS 5 - Portal MenHelpHer em execução!")
         print(f" Projeto Integrado Transdisciplinar - Engenharia de Software")
-        print(f" Aluno: Julio Cezar Costa Alves (RGM: 39909549)")
+        print(f" Aluno: Julio Costa ")
         print(f" Acesse no navegador: http://localhost:{PORT}")
         print(f"================================================================")
         try:
             httpd.serve_forever()
         except KeyboardInterrupt:
             print("\nServidor encerrado com sucesso.")
+
 
 if __name__ == '__main__':
     main()

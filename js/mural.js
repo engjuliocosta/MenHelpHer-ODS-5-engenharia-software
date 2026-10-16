@@ -1,6 +1,6 @@
 /**
  * MenHelpHer ODS 5 - Lógica do Mural de Compromissos (HeForShe) & Avaliação de Impacto
- * Autor: Julio Cezar Costa Alves (RGM: 39909549)
+ * Autor: Julio Costa 
  */
 
 const MuralModule = {
@@ -43,7 +43,7 @@ const MuralModule = {
     return [
       {
         id: "comp-1",
-        nome: "Julio Cezar Costa Alves",
+        nome: "Julio Costa",
         papel: "Estudante de Engenharia de Software",
         tipo: "Code Review Inclusivo",
         tipo_label: "Revisão de Código Respeitosa",
