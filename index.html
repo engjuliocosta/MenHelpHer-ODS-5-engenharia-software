@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MenHelpHer | Plataforma de Equidade de Gênero na Engenharia de Software</title>
+  <meta name="description"
+    content="Portal interativo de sensibilização sobre igualdade de gênero (ODS 5 da ONU) na Engenharia de Software e TI. Painel de indicadores oficiais, simulador gamificado de vieses inconscientes e mural de compromissos HeForShe.">
+  <meta name="author" content="Julio Costa">
+  <meta name="keywords"
+    content="ODS 5, Engenharia de Software, Igualdade de Gênero, Meninas Digitais, SBC, HeForShe, Mulheres na TI, Vieses Inconscientes">
+
+  <!-- Estilos da Aplicação -->
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="css/simulator.css">
+  <link rel="stylesheet" href="css/mural.css">
+</head>
+
+<body>
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Barra Superior de Acessibilidade & Identificação Acadêmica -->
+  <aside class="top-bar" aria-label="Barra de Acessibilidade e Identificação do Projeto">
+    <div class="container top-bar-inner">
+      <div class="academic-badge">
+        <span>🎓 <strong>Projeto Integrado Transdisciplinar (PIT I)</strong> — Engenharia de Software</span>
+        <span style="opacity: 0.6;">|</span>
+        <span>Autor: <strong>Julio Costa</strong></span>
+      </div>
+      <div class="a11y-toolbar" role="toolbar" aria-label="Ferramentas de Acessibilidade">
+        <button class="a11y-btn" id="ttsToggleBtn" title="Ouvir o conteúdo da página">
+          🔊 Ler Tela
+        </button>
+        <button class="a11y-btn" id="fontMinusBtn" title="Diminuir tamanho da fonte" aria-label="Diminuir fonte">
+          A-
+        </button>
+        <button class="a11y-btn" id="fontResetBtn" title="Restaurar tamanho da fonte" aria-label="Restaurar fonte">
+          A
+        </button>
+        <button class="a11y-btn" id="fontPlusBtn" title="Aumentar tamanho da fonte" aria-label="Aumentar fonte">
+          A+
+        </button>
+        <button class="a11y-btn" id="contrastToggleBtn" title="Alternar modo de alto contraste">
+          👁️ Alto Contraste
+        </button>
+        <button class="a11y-btn" id="themeToggleBtn" onclick="App.toggleTheme()" title="Alternar tema claro e escuro">
+          ☀️ Modo Claro
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Cabeçalho Principal & Navegação -->
+  <header class="site-header">
+    <div class="container navbar">
+      <a href="#inicio" class="logo-group" aria-label="EquiTech ODS 5 - Início">
+        <div class="logo-icon" aria-hidden="true">5</div>
+        <div class="logo-text">
+          <span class="logo-title">EquiTech ODS 5</span>
+          <span class="logo-sub">MenHelpHer • Tecnologia & Equidade</span>
+        </div>
+      </a>
+
+      <button class="nav-toggle" id="navToggleBtn" aria-label="Abrir menu de navegação">
+        ☰
+      </button>
+
+      <nav aria-label="Navegação Principal">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#painel" class="nav-link active" data-tab="dashboard">📊 Indicadores Oficiais</a></li>
+          <li><a href="#simulador" class="nav-link" data-tab="simulator">🎮 Simulador de Vieses</a></li>
+          <li><a href="#mural" class="nav-link" data-tab="mural">🤝 Mural HeForShe</a></li>
+          <li><a href="#recursos" class="nav-link" data-tab="recursos">📚 Pioneiras & Boas Práticas</a></li>
+          <li><a href="#avaliacao" class="nav-link" data-tab="avaliacao">📝 Avaliação de Impacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Conteúdo Principal -->
+  <main class="container" id="mainContentArea">
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+      <div class="hero-pill">
+        <span>🎯 ODS 5 da ONU (Metas 5.1, 5.5 e 5.b) na Engenharia de Software</span>
+      </div>
+      <h1 class="hero-title">
+        Construindo uma Engenharia de Software <span class="gradient-text">Inclusiva, Ética e Equitativa</span>
+      </h1>
+      <p class="hero-description">
+        A Engenharia de Software é uma disciplina sociotécnica. Eliminar vieses inconscientes em revisões de código,
+        processos seletivos e dinâmicas de squad é indispensável para construir sistemas justos e garantir que mulheres
+        tenham liderança e equidade de oportunidades em TI.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="App.switchTab('simulator')">
+          🚀 Iniciar Simulador de Vieses
+        </button>
+        <button class="btn btn-secondary" onclick="App.switchTab('dashboard')">
+          📈 Explorar Indicadores Oficiais (SBC & IPEA)
+        </button>
+      </div>
+    </section>
+
+    <!-- Barra de Abas Interativa -->
+    <nav class="tabs-nav" role="tablist" aria-label="Seções do Portal">
+      <button class="tab-btn active" role="tab" aria-selected="true" data-tab="dashboard" id="tabBtnDashboard">
+        📊 Painel de Indicadores
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="simulator" id="tabBtnSimulator">
+        🎮 Simulador de Vieses Inconscientes
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="mural" id="tabBtnMural">
+        🤝 Mural HeForShe de Compromissos
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="recursos" id="tabBtnRecursos">
+        📚 Pioneiras & Checklist de Squads
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="avaliacao" id="tabBtnAvaliacao">
+        📝 Avaliação de Impacto
+      </button>
+    </nav>
+
+    <!-- ====================================================================
+         ABA 1: PAINEL DE INDICADORES OFICIAIS
+         ==================================================================== -->
+    <section class="tab-pane active" id="tab-dashboard" role="tabpanel" aria-labelledby="tabBtnDashboard">
+      <div class="dashboard-header">
+        <span class="badge-tag">Curadoria de Dados Abertos</span>
+        <h2>Evidências Estatísticas: A Realidade da Mulher na Computação</h2>
+        <p>Dados oficiais consolidados pela SBC, IPEA, Inep/MEC e ONU Mulheres que embasam o projeto de intervenção.</p>
+      </div>
+
+      <!-- Grid de KPIs -->
+      <div class="kpi-grid" id="kpiGrid">
+        <!-- Renderizado dinamicamente via js/dashboard.js -->
+      </div>
+
+      <!-- Linha de Gráficos: Funil de Carreira & Gap Salarial -->
+      <div class="charts-row">
+        <div class="chart-card">
+          <div class="chart-header">
+            <div>
+              <h3>O Funil de Evasão e Liderança em Computação</h3>
+              <span class="chart-subtitle">Distribuição por gênero desde a graduação até cargos executivos e CTO</span>
+            </div>
+            <span style="font-size: 1.25rem;" aria-hidden="true">📉</span>
+          </div>
+          <div class="funnel-container" id="funnelContainer">
+            <!-- Renderizado dinamicamente -->
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-header">
+            <div>
+              <h3>Disparidade Salarial em TI</h3>
+              <span class="chart-subtitle">Média para cargos equivalentes de desenvolvimento</span>
+            </div>
+            <span style="font-size: 1.25rem;" aria-hidden="true">⚖️</span>
+          </div>
+
+          <div class="gap-display">
+            <div class="gap-circle" aria-label="21,4% de diferença salarial desfavorável para mulheres">
+              <svg viewBox="0 0 100 100">
+                <circle class="bg-circle" cx="50" cy="50" r="42"></circle>
+                <circle class="progress-circle" cx="50" cy="50" r="42"></circle>
+              </svg>
+              <div class="gap-circle-text">
+                <span class="pct">-21,4%</span>
+                <span class="lbl">Gap Salarial</span>
+              </div>
+            </div>
+
+            <div class="gap-details">
+              <div class="gap-item">
+                <div class="gap-bullet" style="background: var(--color-ods5);"></div>
+                <span>Engenheira Sênior: <strong>R$ 13.800/mês</strong></span>
+              </div>
+              <div class="gap-item">
+                <div class="gap-bullet" style="background: var(--color-primary-light);"></div>
+                <span>Engenheiro Sênior: <strong>R$ 17.500/mês</strong></span>
+              </div>
+              <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.5rem;">
+                *Controlado por tempo de experiência e formação acadêmica (Fonte: IPEA / Glassdoor Tech).
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Metas ODS 5 Aplicadas à Engenharia de Software -->
+      <div class="goals-section">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <h3>Metas da Agenda 2030 (ONU) Conectadas à Tecnologia</h3>
+          <p>Como transformar metas globais de desenvolvimento em práticas diárias de squads de software.</p>
+        </div>
+        <div class="goals-grid" id="goalsGrid">
+          <!-- Renderizado dinamicamente -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ABA 2: SIMULADOR GAMIFICADO DE SITUAÇÕES REAIS
+         ==================================================================== -->
+    <section class="tab-pane" id="tab-simulator" role="tabpanel" aria-labelledby="tabBtnSimulator">
+      <div class="dashboard-header">
+        <span class="badge-tag">Módulo Gamificado de Treinamento</span>
+        <h2>Simulador de Vieses Inconscientes em Engenharia de Software</h2>
+        <p>Vivencie dilemas reais em code reviews, daily scrums, processos seletivos e inteligência artificial. Como
+          você agiria?</p>
+      </div>
+
+      <div class="simulator-container" id="simulatorView">
+        <!-- Renderizado dinamicamente via js/simulator.js -->
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ABA 3: MURAL DIGITAL DE COMPROMISSOS (HEFORSHE)
+         ==================================================================== -->
+    <section class="tab-pane" id="tab-mural" role="tabpanel" aria-labelledby="tabBtnMural">
+      <div class="mural-header">
+        <span class="badge-tag">Campanha Inspirada no HeForShe / ElesPorElas (ONU Mulheres)</span>
+        <h2>Mural Digital de Compromissos pela Equidade em TI</h2>
+        <p>A transformação da cultura tecnológica começa com a postura individual de cada estudante, docente e
+          engenheiro(a). Assine seu compromisso público!</p>
+      </div>
+
+      <!-- Banner HeForShe & Contadores -->
+      <div class="heforshe-banner">
+        <div>
+          <h3 style="color: var(--color-ods5-light); margin-bottom: 0.35rem;">Movimento de Aliados e Lideranças</h3>
+          <p style="margin: 0; font-size: 0.9rem;">
+            Mobilizando homens e mulheres para erradicar o sexismo e as barreiras de carreira na computação.
+          </p>
+        </div>
+        <div class="heforshe-stats">
+          <div class="heforshe-stat-item">
+            <span class="heforshe-stat-number" id="totalCommitmentsCount">5</span>
+            <span class="heforshe-stat-label">Compromissos Firmados</span>
+          </div>
+          <div class="heforshe-stat-item">
+            <span class="heforshe-stat-number" id="totalAlliesCount">195</span>
+            <span class="heforshe-stat-label">Apoios Registrados</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mural-layout">
+        <!-- Formulário de Novo Compromisso -->
+        <aside class="commitment-form-card">
+          <h3 style="margin-bottom: 0.5rem;">Firme seu Compromisso</h3>
+          <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+            Seu depoimento inspirará outros colegas nos laboratórios e no mercado.
+          </p>
+
+          <form id="commitmentForm">
+            <div class="form-group">
+              <label for="committerName" class="form-label">Seu Nome / Como deseja ser identificado</label>
+              <input type="text" id="committerName" class="form-control" placeholder="Ex: Júlio Alves" required>
+            </div>
+
+            <div class="form-group">
+              <label for="committerRole" class="form-label">Seu Papel na Comunidade de TI</label>
+              <select id="committerRole" class="form-control" required>
+                <option value="Estudante de Engenharia de Software">Estudante de Engenharia de Software</option>
+                <option value="Estudante de Ciência da Computação / TI">Estudante de Ciência da Computação / TI</option>
+                <option value="Docente Universitário(a)">Docente Universitário(a)</option>
+                <option value="Engenheiro(a) de Software Pleno/Sênior">Engenheiro(a) de Software Pleno/Sênior</option>
+                <option value="Tech Lead / Arquiteto(a) de Software">Tech Lead / Arquiteto(a) de Software</option>
+                <option value="Recrutador(a) Técnico (Tech Recruiter)">Recrutador(a) Técnico (Tech Recruiter)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="commitmentType" class="form-label">Ação Prática que Você Assume</label>
+              <select id="commitmentType" class="form-control" required>
+                <option value="Code Review Inclusivo">Revisão de Código Inclusiva e Respeitosa</option>
+                <option value="Combate ao Manterrupting">Combater Interrupções em Reuniões Técnicas</option>
+                <option value="Mentoria Ativa">Mentoria para Mulheres em Computação</option>
+                <option value="Liderança Técnica">Apoio Ativo a Lideranças Femininas</option>
+                <option value="Equidade Salarial">Defesa de Paridade Salarial e Oportunidades Justas</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="commitmentMsg" class="form-label">Sua Declaração de Compromisso</label>
+              <textarea id="commitmentMsg" class="form-control"
+                placeholder="Descreva como você aplicará a equidade de gênero na sua rotina acadêmica ou profissional..."
+                required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              🤝 Publicar Compromisso no Mural
+            </button>
+
+            <div id="formSuccessMsg"
+              style="display: none; margin-top: 1rem; padding: 0.75rem; background: rgba(16, 185, 129, 0.15); border: 1px solid var(--color-success); border-radius: var(--radius-sm); font-size: 0.85rem; color: var(--color-success); text-align: center;">
+              ✅ Seu compromisso foi publicado com sucesso no mural!
+            </div>
+          </form>
+        </aside>
+
+        <!-- Feed de Compromissos com Filtros -->
+        <section>
+          <div class="mural-controls">
+            <span style="font-weight: 700; font-size: 1.05rem;">Compromissos da Comunidade</span>
+            <div class="filter-pills" role="group" aria-label="Filtrar compromissos por perfil">
+              <button class="filter-pill active" data-filter="todos"
+                onclick="MuralModule.setFilter('todos')">Todos</button>
+              <button class="filter-pill" data-filter="Estudante"
+                onclick="MuralModule.setFilter('Estudante')">Discentes</button>
+              <button class="filter-pill" data-filter="Docente"
+                onclick="MuralModule.setFilter('Docente')">Docentes</button>
+              <button class="filter-pill" data-filter="Lead" onclick="MuralModule.setFilter('Lead')">Tech Leads</button>
+              <button class="filter-pill" data-filter="Engenheir"
+                onclick="MuralModule.setFilter('Engenheir')">Engenheiros(as)</button>
+            </div>
+          </div>
+
+          <div class="commitments-feed" id="commitmentsFeed">
+            <!-- Renderizado dinamicamente -->
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ABA 4: PIONEIRAS, BOAS PRÁTICAS & PROGRAMAS DE REFERÊNCIA
+         ==================================================================== -->
+    <section class="tab-pane" id="tab-recursos" role="tabpanel" aria-labelledby="tabBtnRecursos">
+      <div class="dashboard-header">
+        <span class="badge-tag">Inspiração & Diretrizes Éticas</span>
+        <h2>Mulheres que Moldaram a Computação & Diretrizes de Squad</h2>
+        <p>Resgate histórico da liderança feminina na computação e recomendações práticas para transformar times de
+          desenvolvimento.</p>
+      </div>
+
+      <!-- Mulheres Pioneiras -->
+      <div style="margin-bottom: 3rem;">
+        <h3 style="margin-bottom: 1.25rem;">👩‍💻 Pioneiras Históricas e Líderes Brasileiras</h3>
+        <div class="goals-grid" id="pioneirasGrid">
+          <!-- Renderizado dinamicamente -->
+        </div>
+      </div>
+
+      <!-- Checklist de Boas Práticas para Squads -->
+      <div style="margin-bottom: 3rem;">
+        <h3 style="margin-bottom: 0.5rem;">📋 Checklist: 6 Práticas para um Squad Inclusivo</h3>
+        <p style="margin-bottom: 1.25rem;">Baseado nas diretrizes do Programa Meninas Digitais da SBC e no Código de
+          Ética ACM/IEEE.</p>
+        <div class="goals-grid" id="checklistGrid">
+          <!-- Renderizado dinamicamente -->
+        </div>
+      </div>
+
+      <!-- Programas e Links Úteis -->
+      <div class="glass-card" style="padding: 2rem;">
+        <h3 style="margin-bottom: 1rem;">🔗 Programas e Movimentos Oficiais de Referência</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.25rem;">
+          <div style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md);">
+            <strong style="color: var(--color-ods5-light); display: block; margin-bottom: 0.4rem;">Programa Meninas
+              Digitais (SBC)</strong>
+            <p style="font-size: 0.85rem; margin-bottom: 0.6rem;">Iniciativa oficial da Sociedade Brasileira de
+              Computação para incentivar e manter mulheres na graduação e carreira de TI.</p>
+            <a href="https://meninas.sbc.org.br" target="_blank" rel="noopener noreferrer">Visitar portal oficial ↗</a>
+          </div>
+          <div style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md);">
+            <strong style="color: var(--color-primary-light); display: block; margin-bottom: 0.4rem;">Campanha
+              ElesPorElas / HeForShe</strong>
+            <p style="font-size: 0.85rem; margin-bottom: 0.6rem;">Movimento global de solidariedade da ONU Mulheres pela
+              igualdade de gênero e engajamento masculino.</p>
+            <a href="https://www.heforshe.org/pt-br" target="_blank" rel="noopener noreferrer">Conhecer movimento ↗</a>
+          </div>
+          <div style="background: var(--bg-surface-elevated); padding: 1.25rem; border-radius: var(--radius-md);">
+            <strong style="color: var(--color-accent); display: block; margin-bottom: 0.4rem;">IPEA / ODS 5
+              Brasil</strong>
+            <p style="font-size: 0.85rem; margin-bottom: 0.6rem;">Relatório nacional de acompanhamento dos Objetivos de
+              Desenvolvimento Sustentável da Agenda 2030.</p>
+            <a href="https://www.ipea.gov.br/ods/ods5.html" target="_blank" rel="noopener noreferrer">Acessar dados IPEA
+              ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ABA 5: AVALIAÇÃO DE IMPACTO DA CAMPANHA (ETAPA 5 DO PIT)
+         ==================================================================== -->
+    <section class="tab-pane" id="tab-avaliacao" role="tabpanel" aria-labelledby="tabBtnAvaliacao">
+      <div class="dashboard-header">
+        <span class="badge-tag">Etapa 5 do Procedimento do PIT</span>
+        <h2>Avaliação de Impacto & Percepção da Comunidade</h2>
+        <p>Sua opinião é fundamental para medirmos a eficácia da campanha de intervenção nos laboratórios e cursos de
+          tecnologia.</p>
+      </div>
+
+      <div class="evaluation-section">
+        <h3>Formulário Eletrônico de Avaliação</h3>
+        <p style="font-size: 0.9rem; color: var(--text-muted);">
+          Preencha anonimamente para consolidar as métricas de impacto do projeto.
+        </p>
+
+        <form id="evalForm" class="eval-grid">
+          <div>
+            <div class="form-group">
+              <label for="evalPerfil" class="form-label">1. Qual seu perfil na instituição?</label>
+              <select id="evalPerfil" class="form-control" required>
+                <option value="Estudante">Estudante de Engenharia / TI</option>
+                <option value="Docente">Docente / Pesquisador(a)</option>
+                <option value="Profissional de TI">Profissional atuante no mercado de software</option>
+                <option value="Outro">Outro perfil da comunidade</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="evalClareza" class="form-label">2. Clareza e facilidade de uso da plataforma (1 a 5)</label>
+              <select id="evalClareza" class="form-control" required>
+                <option value="5">5 - Excelente e muito intuitiva</option>
+                <option value="4">4 - Boa e fácil de navegar</option>
+                <option value="3">3 - Regular</option>
+                <option value="2">2 - Razoável</option>
+                <option value="1">1 - Difícil de compreender</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <div class="form-group">
+              <label for="evalVieses" class="form-label">3. O simulador ajudou a reconhecer vieses em code reviews e
+                reuniões?</label>
+              <select id="evalVieses" class="form-control" required>
+                <option value="5">5 - Sim, amplamente. Cenários muito realistas!</option>
+                <option value="4">4 - Sim, trouxe bons aprendizados</option>
+                <option value="3">3 - Em parte</option>
+                <option value="2">2 - Pouco</option>
+                <option value="1">1 - Não agregou</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="evalOds" class="form-label">4. Relevância do ODS 5 para a formação em Engenharia de
+                Software</label>
+              <select id="evalOds" class="form-control" required>
+                <option value="5">5 - Fundamental: TI precisa de ética e inclusão</option>
+                <option value="4">4 - Importante</option>
+                <option value="3">3 - Moderada</option>
+                <option value="2">2 - Pouco relevante</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="evalComentario" class="form-label">5. Comentários ou sugestões para a campanha:</label>
+              <textarea id="evalComentario" class="form-control"
+                placeholder="Deixe sua percepção sobre a iniciativa..."></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              📤 Enviar Avaliação de Impacto
+            </button>
+
+            <div id="evalSuccessMsg"
+              style="display: none; margin-top: 1rem; padding: 0.75rem; background: rgba(16, 185, 129, 0.15); border: 1px solid var(--color-success); border-radius: var(--radius-sm); font-size: 0.85rem; color: var(--color-success); text-align: center;">
+              🎉 Obrigado! Sua avaliação foi registrada e computada nas métricas do projeto.
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé Institucional -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-info">
+          <div class="logo-group" style="margin-bottom: 0.85rem;">
+            <div class="logo-icon" style="width: 2.2rem; height: 2.2rem; font-size: 1rem;">5</div>
+            <span class="logo-title" style="font-size: 1.1rem;">EquiTech ODS 5</span>
+          </div>
+          <p>
+            Projeto Integrado Transdisciplinar (PIT I) desenvolvido para sensibilização sobre a igualdade de gênero na
+            Engenharia de Software e promoção das metas 5.1, 5.5 e 5.b da Agenda 2030 da ONU.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Módulos da Plataforma</h4>
+          <ul class="footer-links">
+            <li><a href="#painel" onclick="App.switchTab('dashboard')">Painel de Indicadores</a></li>
+            <li><a href="#simulador" onclick="App.switchTab('simulator')">Simulador Gamificado</a></li>
+            <li><a href="#mural" onclick="App.switchTab('mural')">Mural HeForShe</a></li>
+            <li><a href="#recursos" onclick="App.switchTab('recursos')">Pioneiras & Diretrizes</a></li>
+            <li><a href="#avaliacao" onclick="App.switchTab('avaliacao')">Avaliação de Impacto</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Dados Acadêmicos</h4>
+          <ul class="footer-links" style="font-size: 0.85rem; color: var(--text-muted);">
+            <li><strong>Estudante:</strong> Julio Costa</li>
+            <li><strong>Curso:</strong> Engenharia de Software</li>
+            <li><strong>Disciplina:</strong> PIT I</li>
+            <li><strong>Instituição:</strong> Universidade / EAD</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 EquiTech ODS 5 — Desenvolvido por Julio Costa. Licença Aberta Educacional.
+        </div>
+        <div>
+          Alinhado às diretrizes do <strong>Programa Meninas Digitais (SBC)</strong> e <strong>ONU Mulheres
+            (HeForShe)</strong>.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts da Aplicação -->
+  <script src="js/data.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/simulator.js"></script>
+  <script src="js/mural.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,353 @@
+/* ==========================================================================
+   EquiTech ODS 5 - Estilos do Painel de Indicadores & Estatísticas
+   Módulo 1: Curadoria de Indicadores Oficiais (ONU Brasil, IPEA e SBC)
+   ========================================================================== */
+
+.dashboard-header {
+  margin-bottom: 2.2rem;
+  text-align: center;
+}
+
+.dashboard-header .badge-tag {
+  display: inline-block;
+  background: rgba(139, 92, 246, 0.15);
+  color: var(--color-primary-light);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.6rem;
+}
+
+/* Grid de Indicadores Principais */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.kpi-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-fast);
+}
+
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--color-primary);
+}
+
+.kpi-card.critico::before {
+  background: var(--color-ods5);
+}
+
+.kpi-card.alerta::before {
+  background: var(--color-warning);
+}
+
+.kpi-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-lg);
+}
+
+.kpi-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.kpi-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.kpi-icon {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.kpi-value {
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1;
+  font-family: var(--font-heading);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #FFF 30%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .kpi-value {
+  background: linear-gradient(135deg, #0F172A 30%, #334155 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.kpi-card.critico .kpi-value {
+  background: linear-gradient(135deg, #FF6B81 0%, var(--color-ods5) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.kpi-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  margin-bottom: 0.75rem;
+  flex-grow: 1;
+}
+
+.kpi-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.65rem;
+}
+
+.kpi-source {
+  font-style: italic;
+}
+
+.kpi-trend {
+  font-weight: 600;
+  color: var(--color-ods5-light);
+}
+
+/* ==========================================================================
+   Gráficos e Visualizações
+   ========================================================================== */
+
+.charts-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 992px) {
+  .charts-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.25rem;
+}
+
+.chart-subtitle {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* Funil de Carreira em Barras */
+.funnel-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.funnel-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.funnel-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.funnel-track {
+  height: 22px;
+  background: var(--bg-surface-elevated);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.funnel-bar-women {
+  background: linear-gradient(90deg, var(--color-ods5), var(--color-ods5-light));
+  height: 100%;
+  border-radius: var(--radius-full) 0 0 var(--radius-full);
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.5rem;
+  color: #FFF;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.funnel-bar-men {
+  background: var(--bg-surface-elevated);
+  height: 100%;
+  flex-grow: 1;
+}
+
+/* Visualização Circular / Gap Salarial */
+.gap-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+}
+
+.gap-circle {
+  width: 140px;
+  height: 140px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gap-circle svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.gap-circle circle {
+  fill: none;
+  stroke-width: 10;
+}
+
+.gap-circle .bg-circle {
+  stroke: var(--bg-surface-elevated);
+}
+
+.gap-circle .progress-circle {
+  stroke: var(--color-ods5);
+  stroke-linecap: round;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 60;
+  transition: stroke-dashoffset 1s ease;
+}
+
+.gap-circle-text {
+  position: absolute;
+  text-align: center;
+}
+
+.gap-circle-text .pct {
+  font-size: 1.7rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  color: var(--color-ods5-light);
+  line-height: 1;
+}
+
+.gap-circle-text .lbl {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.gap-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.gap-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.gap-bullet {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+}
+
+/* ==========================================================================
+   Metas ODS 5 Detalhadas
+   ========================================================================== */
+
+.goals-section {
+  margin-top: 2rem;
+}
+
+.goals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.goal-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  position: relative;
+}
+
+.goal-tag {
+  background: var(--color-ods5);
+  color: #FFF;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+.goal-tech-box {
+  background: var(--bg-surface-elevated);
+  border-left: 3px solid var(--color-primary);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 0.85rem;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+
+.goal-tech-box strong {
+  color: var(--color-primary-light);
+  display: block;
+  margin-bottom: 0.25rem;
+}

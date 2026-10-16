@@ -1,0 +1,331 @@
+/* ==========================================================================
+   MenHelpHer - Estilos do Mural Digital de Compromissos (HeForShe)
+   Módulo 3 & Etapa 5: Adesão Voluntária, Roda de Conversa e Avaliação
+   ========================================================================== */
+
+.mural-header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 2.5rem;
+}
+
+.mural-header .badge-tag {
+  display: inline-block;
+  background: rgba(229, 36, 59, 0.15);
+  color: var(--color-ods5-light);
+  border: 1px solid rgba(229, 36, 59, 0.3);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 0.6rem;
+}
+
+/* Banner HeForShe */
+.heforshe-banner {
+  background: linear-gradient(135deg, rgba(229, 36, 59, 0.18), rgba(139, 92, 246, 0.18));
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.heforshe-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.heforshe-stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.heforshe-stat-number {
+  font-size: 2.2rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  color: var(--color-ods5-light);
+  line-height: 1;
+}
+
+.heforshe-stat-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* Layout em 2 colunas: Formulário à esquerda / Mural à direita */
+.mural-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+@media (max-width: 900px) {
+  .mural-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Formulário de Compromisso */
+.commitment-form-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  height: fit-content;
+  position: sticky;
+  top: 6rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.4rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  transition: all var(--transition-fast);
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--color-ods5);
+  box-shadow: 0 0 0 3px var(--color-ods5-glow);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* Filtros do Mural */
+.mural-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.filter-pills {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.filter-pill {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.filter-pill:hover,
+.filter-pill.active {
+  background: var(--color-ods5);
+  color: #FFF;
+  border-color: var(--color-ods5);
+}
+
+/* Feed de Compromissos */
+.commitments-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.commitment-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+
+.commitment-card:hover {
+  border-color: var(--border-medium);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.commitment-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.committer-info {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.committer-avatar {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-ods5));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.committer-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.committer-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.committer-role {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.commitment-badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: rgba(139, 92, 246, 0.15);
+  color: var(--color-primary-light);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.commitment-text {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  font-style: italic;
+  position: relative;
+  padding-left: 0.5rem;
+  border-left: 2px solid var(--border-medium);
+}
+
+.commitment-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.btn-like {
+  background: transparent;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 0.25rem 0.7rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-like:hover {
+  background: rgba(229, 36, 59, 0.1);
+  color: var(--color-ods5-light);
+  border-color: var(--color-ods5);
+}
+
+.btn-like.liked {
+  color: var(--color-ods5-light);
+  border-color: var(--color-ods5);
+}
+
+/* ==========================================================================
+   Seção de Avaliação de Impacto & Roda de Conversa
+   ========================================================================== */
+
+.evaluation-section {
+  margin-top: 4rem;
+  padding: 2.5rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xl);
+}
+
+.eval-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .eval-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.rating-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.35rem;
+}
+
+.rating-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-medium);
+  color: var(--text-secondary);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rating-btn.active,
+.rating-btn:hover {
+  background: var(--color-ods5);
+  color: #FFF;
+  border-color: var(--color-ods5);
+}

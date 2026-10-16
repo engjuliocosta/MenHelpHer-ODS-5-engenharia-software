@@ -1,0 +1,339 @@
+/* ==========================================================================
+   MenHelpHer - Estilos do Simulador Gamificado de Situações Reais
+   Módulo 2: Identificação de Vieses Inconscientes em Engenharia de Software
+   ========================================================================== */
+
+.simulator-container {
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+/* Header do Simulador e Gamificação */
+.simulator-header {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.sim-progress-box {
+  flex-grow: 1;
+  min-width: 200px;
+}
+
+.sim-progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.sim-progress-track {
+  height: 10px;
+  background: var(--bg-surface-elevated);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.sim-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-ods5), var(--color-primary));
+  border-radius: var(--radius-full);
+  transition: width 0.4s ease;
+  width: 20%;
+}
+
+.sim-score-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--bg-surface-elevated);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-medium);
+}
+
+.sim-score-badge .score-icon {
+  font-size: 1.4rem;
+}
+
+.sim-score-badge .score-val {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--color-ods5-light);
+  font-family: var(--font-heading);
+}
+
+.sim-score-badge .score-lbl {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* Card do Cenário */
+.scenario-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xl);
+  padding: 2.25rem;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.scenario-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--color-primary-light);
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.25rem 0.8rem;
+  border-radius: var(--radius-full);
+  margin-bottom: 1rem;
+}
+
+.scenario-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Caixa com estética de IDE / Contexto de Squad */
+.scenario-context-box {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-bottom: 1.75rem;
+  font-family: var(--font-body);
+  position: relative;
+  line-height: 1.65;
+}
+
+.ide-header {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.ide-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-red {
+  background: #FF5F56;
+}
+
+.dot-yellow {
+  background: #FFBD2E;
+}
+
+.dot-green {
+  background: #27C93F;
+}
+
+.scenario-question {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.25rem;
+}
+
+/* Opções de Resposta */
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1.75rem;
+}
+
+.option-btn {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 1.1rem 1.25rem;
+  text-align: left;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  position: relative;
+}
+
+.option-btn:hover:not(:disabled) {
+  background: var(--bg-card-hover);
+  border-color: var(--color-primary-light);
+  color: var(--text-primary);
+  transform: translateX(4px);
+}
+
+.option-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+/* Estados da Opção após clique */
+.option-btn.selected-correct {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: var(--color-success);
+  color: var(--text-primary);
+}
+
+.option-btn.selected-correct .option-letter {
+  background: var(--color-success);
+  color: #FFF;
+  border-color: var(--color-success);
+}
+
+.option-btn.selected-wrong {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: var(--color-danger);
+  color: var(--text-primary);
+}
+
+.option-btn.selected-wrong .option-letter {
+  background: var(--color-danger);
+  color: #FFF;
+  border-color: var(--color-danger);
+}
+
+.option-btn.selected-partial {
+  background: rgba(245, 158, 11, 0.15);
+  border-color: var(--color-warning);
+  color: var(--text-primary);
+}
+
+.option-btn:disabled {
+  cursor: default;
+  opacity: 0.75;
+}
+
+/* Feedback & Fundamentação Ética */
+.feedback-box {
+  background: var(--bg-surface-elevated);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  margin-top: 1.25rem;
+  border-left: 4px solid var(--color-primary);
+  animation: fadeIn 0.3s ease;
+  display: none;
+}
+
+.feedback-box.active {
+  display: block;
+}
+
+.feedback-box.correto {
+  border-left-color: var(--color-success);
+  background: rgba(16, 185, 129, 0.08);
+}
+
+.feedback-box.alerta {
+  border-left-color: var(--color-warning);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+.feedback-box.erro {
+  border-left-color: var(--color-danger);
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.feedback-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.feedback-ethics {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.feedback-ethics strong {
+  color: var(--color-primary-light);
+}
+
+.feedback-tip {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.sim-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+/* Tela de Conclusão / Badges */
+.sim-finished-card {
+  text-align: center;
+  padding: 3rem 2rem;
+}
+
+.sim-trophy {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: bounce 1.2s infinite alternate;
+}
+
+@keyframes bounce {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+.sim-result-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--color-ods5), var(--color-primary));
+  color: #FFF;
+  font-weight: 800;
+  font-size: 1.1rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: var(--radius-full);
+  margin: 1rem 0 1.5rem;
+  box-shadow: 0 4px 18px var(--color-ods5-glow);
+}
