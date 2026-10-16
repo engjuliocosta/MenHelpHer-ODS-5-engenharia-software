@@ -154,8 +154,6 @@ Caso prefira não utilizar a linha de comando, basta dar um duplo clique diretam
 pit-1_2/
 ├── index.html                           # Interface web principal da plataforma
 ├── server.py                            # Servidor Python com API RESTful
-├── Julio_Cezar_Costa_Alves_PITI-1.docx  # Documento acadêmico do aluno
-├── PICPIT_atividade_resolvida.docx      # Documento de referência do PIT
 ├── README.md                            # Documentação geral do projeto
 ├── css/
 │   ├── main.css                         # Design system, tokens, acessibilidade e temas
