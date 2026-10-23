@@ -1,6 +1,12 @@
 # MenHelpHer / EquiTech ODS 5
 ## Plataforma de Sensibilização e Equidade de Gênero na Engenharia de Software
 
+[![CI / Testes e Qualidade](https://github.com/engjuliocosta/MenHelpHer-ODS-5-engenharia-software/actions/workflows/ci.yml/badge.svg)](https://github.com/engjuliocosta/MenHelpHer-ODS-5-engenharia-software/actions/workflows/ci.yml)
+![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
+![Tests](https://img.shields.io/badge/tests-112%20passed-success)
+![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue)
+![Docker](https://img.shields.io/badge/docker-ready-2496ED?logo=docker&logoColor=white)
+
 > **Projeto Integrado Transdisciplinar (PIT I e PIT II)**  
 > **Instituição de Ensino Superior:** Universidade Cruzeiro do Sul (Cruzeiro do Sul Virtual)  
 > **Curso:** Bacharelado em Engenharia de Software  

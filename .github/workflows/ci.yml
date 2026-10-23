@@ -1,0 +1,50 @@
+name: CI / Testes e Qualidade de Software
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    name: Testes Automatizados (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar ambiente Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: "pip"
+
+      - name: Instalar dependências de teste
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest pytest-cov
+
+      - name: Executar suíte completa de testes com cobertura (100%)
+        run: |
+          pytest --cov=backend --cov-report=term-missing
+
+      - name: Executar verificação via unittest nativo do Python
+        run: |
+          python -m unittest discover -s tests -t . -v
+
+  docker-build:
+    name: Validação de Contêiner Docker
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v4
+
+      - name: Validar construção da imagem Docker
+        run: |
+          docker build -t menhelpher:latest .
