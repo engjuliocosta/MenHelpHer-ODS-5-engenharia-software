@@ -210,20 +210,28 @@ pit-1_2/
 - **Python 3.8+** instalado.
 - Qualquer navegador web moderno.
 
-### 🚀 Inicialização Rápida
+### 🐳 Inicialização Dinâmica com 1 Comando (Recomendado para Testadores e Avaliadores)
 
-1. Abra o terminal na pasta do projeto:
-```bash
-cd /home/julio/pit-1_2
-```
+O projeto conta com scripts automatizados para subir a aplicação conteinerizada, verificar saúde e abrir o navegador automaticamente:
 
-2. Inicie o servidor integrado:
+- **No Linux / macOS / WSL:**
+  ```bash
+  ./executar_container.sh
+  ```
+- **No Windows:**
+  Dê um duplo clique no arquivo `executar_container.bat` ou execute no prompt de comando.
+
+> 📖 **Guia Completo para Avaliadores e Testadores:** Veja o passo a passo com critérios de aceite, endpoints e testes em [`docs/pit2/GUIA_TESTADORES_CONTAINER.md`](file:///home/julio/pit-1_2/docs/pit2/GUIA_TESTADORES_CONTAINER.md).
+
+### 🚀 Inicialização Local Direta (Python Puro, sem Docker)
+
+1. Inicie o servidor integrado:
 ```bash
 python3 server.py
 ```
 *(No Windows, utilize `python server.py`).*
 
-3. Acesse a aplicação no navegador:  
+2. Acesse a aplicação no navegador:  
 👉 **[http://localhost:8000](http://localhost:8000)**
 
 ---

@@ -1,0 +1,29 @@
+# ==============================================================================
+# MenHelpHer / EquiTech ODS 5 - Docker Compose Orchestration
+# Projeto Integrado Transdisciplinar (PIT I e PIT II) - Engenharia de Software
+# Instituição: Universidade Cruzeiro do Sul
+# Autor: Julio Costa
+# ==============================================================================
+
+services:
+  menhelpher:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: menhelpher-app
+    image: menhelpher:latest
+    ports:
+      - "8000:8000"
+    environment:
+      - MENHELPHER_HOST=0.0.0.0
+      - MENHELPHER_PORT=8000
+      - MENHELPHER_DB=/app/database/menhelpher.db
+    volumes:
+      - ./database:/app/database
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/saude"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+      start_period: 3s
+    restart: unless-stopped

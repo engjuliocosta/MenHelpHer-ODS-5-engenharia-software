@@ -28,13 +28,15 @@ A aplicação foi construída com foco em máxima portabilidade e zero complexid
 
 ## 3. Passo a Passo de Execução
 
-### 3.1 Clonagem ou Acesso à Pasta do Projeto
-Abra o terminal e navegue até a raiz do repositório:
-```bash
-cd /home/julio/pit-1_2
-```
+### 3.1 Execução Automatizada via Contêiner Docker (Recomendada para Avaliadores)
+Para executar em ambiente isolado, sem necessidade de instalar dependências Python na máquina:
+- **Linux / macOS / WSL:** `./executar_container.sh`
+- **Windows:** Clique duplo em `executar_container.bat`
 
-### 3.2 Inicialização do Servidor de Aplicação
+O script sobe o contêiner, checa o *healthcheck*, abre o navegador automaticamente em `http://localhost:8000` e disponibiliza menu interativo.  
+Consulte o guia dedicado: [`docs/pit2/GUIA_TESTADORES_CONTAINER.md`](file:///home/julio/pit-1_2/docs/pit2/GUIA_TESTADORES_CONTAINER.md).
+
+### 3.2 Execução Direta via Python (Modo Nativo)
 Execute o script principal:
 ```bash
 # No Linux ou macOS:

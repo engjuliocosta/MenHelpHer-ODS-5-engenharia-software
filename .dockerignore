@@ -1,0 +1,15 @@
+.git
+.gitignore
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+.DS_Store
+.markdown-collab/
+.vscode/
+.idea/
+.env
+*.docx
+.pytest_cache/
+.coverage
+htmlcov/
