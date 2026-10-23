@@ -1,5 +1,6 @@
 name: Publicar Site no GitHub Pages
 
+# Apresentação do projeto no GitHub Pages para avaliadores
 on:
   push:
     branches: [ "main" ]
