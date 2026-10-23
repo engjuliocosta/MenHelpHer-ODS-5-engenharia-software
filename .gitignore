@@ -13,3 +13,4 @@ __pycache__/
 .coverage
 htmlcov/
 .pytest_cache/
+docs/pit2/TESTES_DE_PARES_VALIDACAO.md
