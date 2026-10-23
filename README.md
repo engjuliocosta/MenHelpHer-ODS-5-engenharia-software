@@ -2,12 +2,64 @@
 ## Plataforma de Sensibilização e Equidade de Gênero na Engenharia de Software
 
 > **Projeto Integrado Transdisciplinar (PIT I e PIT II)**  
-> **Instituição de Ensino Superior:** Universidade Cruzeiro do Sul  
+> **Instituição de Ensino Superior:** Universidade Cruzeiro do Sul (Cruzeiro do Sul Virtual)  
 > **Curso:** Bacharelado em Engenharia de Software  
 > **Autor / Discente:** Julio Costa  
-> **Ciclo de Desenvolvimento:** Iniciado em **PIT I** (Concepção, Design Thinking e Prototipação) e Concluído em **PIT II** (Arquitetura MVC, SGBD Relacional, 56 Testes Automatizados e Validação com Pares)  
+> **Ciclo de Desenvolvimento:** Iniciado em **PIT I** (Concepção, Design Thinking e Prototipação) e Concluído em **PIT II** (Arquitetura MVC, SGBD Relacional, 112 Testes Automatizados com 100% de Cobertura Backend e Conteinerização Docker)  
 > **Tema Central:** ODS 5 da ONU (Metas 5.1, 5.5 e 5.b da Agenda 2030)  
 > **Alinhamentos:** Programa Meninas Digitais (SBC), Movimento HeForShe / ElesPorElas (ONU Mulheres) e Código de Ética Profissional ACM/IEEE  
+
+---
+
+## ⚡ Guia Rápido de Execução para Avaliadores e Testadores
+
+A aplicação pode ser executada de **três formas simples e dinâmicas**, projetadas para que avaliadores acadêmicos e dublês de usuário testem o sistema imediatamente:
+
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                        ESCOLHA O MODO DE EXECUÇÃO DESEJADO                            │
+├────────────────────────────────────────────────────────────────────────────────────────┤
+│  1. SCRIPT UNIVERSAL (Recomendado):  python iniciar_ambiente_testador.py              │
+│     → Funciona no Windows, Linux e Mac. Baixa o projeto caso necessário, sobe o       │
+│       Docker (ou modo nativo se não tiver Docker), valida a saúde e abre o navegador.  │
+│                                                                                        │
+│  2. CONTÊINER DOCKER DIRETO:                                                          │
+│     → Linux/macOS: ./executar_container.sh    |  Windows: executar_container.bat       │
+│                                                                                        │
+│  3. PYTHON NATIVO (Zero Dependências Externas):                                        │
+│     → python3 server.py  (depois acesse http://localhost:8000)                         │
+└────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 🌟 Opção 1: Script Inicializador Universal (Recomendado - 1 Comando)
+Ideal para avaliadores que receberam o script por e-mail, Drive ou baixaram avulso. Utiliza apenas a biblioteca padrão do Python e gerencia todo o ambiente:
+
+```bash
+# No Windows:
+python iniciar_ambiente_testador.py
+
+# No Linux ou macOS:
+python3 iniciar_ambiente_testador.py
+```
+> O script detecta seu SO, verifica/baixa os arquivos do projeto, inicia o Docker (com fallback automático para Python nativo caso você não tenha Docker), aguarda o *healthcheck* e **abre o navegador automaticamente em [http://localhost:8000](http://localhost:8000)** com menu interativo.  
+> 📖 *Documentação completa:* [`docs/pit2/DOCUMENTACAO_SCRIPT_GERADOR_UNIVERSAL.md`](file:///home/julio/pit-1_2/docs/pit2/DOCUMENTACAO_SCRIPT_GERADOR_UNIVERSAL.md) | Versão texto: [`DOCUMENTACAO_SCRIPT_GERADOR_UNIVERSAL.txt`](file:///home/julio/pit-1_2/DOCUMENTACAO_SCRIPT_GERADOR_UNIVERSAL.txt).
+
+### 🐳 Opção 2: Scripts Dinâmicos de Contêiner Docker
+Para quem já tem o repositório clonado e possui Docker instalado:
+- **No Linux / macOS / WSL:**
+  ```bash
+  ./executar_container.sh
+  ```
+- **No Windows:**
+  Dê um duplo clique no arquivo [`executar_container.bat`](file:///home/julio/pit-1_2/executar_container.bat) ou execute via Prompt de Comando.
+> 📖 *Guia passo a passo com critérios de aceite para testadores:* [`docs/pit2/GUIA_TESTADORES_CONTAINER.md`](file:///home/julio/pit-1_2/docs/pit2/GUIA_TESTADORES_CONTAINER.md).
+
+### 🚀 Opção 3: Execução Local Direta (Python Puro, sem Docker)
+```bash
+python3 server.py
+```
+*(No Windows, utilize `python server.py`).*  
+Acesse em: 👉 **[http://localhost:8000](http://localhost:8000)**
 
 ---
 
@@ -25,8 +77,9 @@ O projeto une rigor científico, responsabilidade social e excelência técnica,
 |---|---|---|
 | **Padrão Arquitetural** | Script monolítico procedural | **Model-View-Controller (MVC)** estrito e desacoplado |
 | **Persistência de Dados** | Arquivos estáticos JSON simples | **SGBD Relacional SQLite 3** em 3ª Forma Normal (3FN), com DDL padronizado, PKs, FKs e restrições `CHECK` |
-| **Garantia de Qualidade** | Testes manuais pontuais | **56 testes automatizados** (unitários, integração REST, ponta-a-ponta HTTP e integridade estática) |
-| **Validação com Usuários** | Avaliação preliminar de conceito | **Validação formal por pares (5 dublês de usuário)** com laudos padronizados e matriz de rastreabilidade |
+| **Garantia de Qualidade** | Testes manuais pontuais | **112 testes automatizados** com **100% de cobertura no backend** (unitários, integração REST, ponta-a-ponta HTTP e integridade) |
+| **Conteinerização** | Não conteinerizado | **Dockerfile otimizado e docker-compose** com usuário seguro não-root (`appuser`) e healthcheck ativo |
+| **Validação com Usuários** | Avaliação preliminar de conceito | **Validação com dublês de usuário (pares)** com laudos padronizados e matriz de rastreabilidade |
 | **Segurança & Resiliência** | Validação básica de formulários | **Higienização anti-XSS**, proteção contra payloads abusivos (HTTP 413) e modo offline com fallback |
 | **Acessibilidade Digital** | Recursos visuais básicos | **WCAG 2.1:** WAI-ARIA Tabs com navegação por setas, skip link, leitor nativo e persistência de preferências |
 
@@ -138,6 +191,7 @@ graph TD
 - **Frontend**: HTML5 Semântico, Vanilla CSS Moderno (Design Tokens, Glassmorphism, CSS Custom Properties), JavaScript ES6+ Modular (sem dependência de frameworks ou empacotadores).
 - **Backend**: Python 3 nativo (`ThreadingHTTPServer`, rotas RESTful JSON, modelos de validação, controllers desacoplados).
 - **Banco de Dados**: SQLite 3 com modelo relacional normalizado (3FN), DDL padronizado ANSI-SQL, chaves primárias, estrangeiras e constraints `CHECK`.
+- **Contêiner**: Dockerfile enxuto com `python:3.12-slim`, Docker Compose e scripts de automação.
 
 ---
 
@@ -145,6 +199,16 @@ graph TD
 
 ```
 pit-1_2/
+├── iniciar_ambiente_testador.py         # Inicializador universal multiplataforma (Windows/Linux/Mac)
+├── executar_container.sh                # Script dinâmico de contêiner para Linux/macOS
+├── executar_container.bat               # Script dinâmico de contêiner para Windows
+├── run_tests.sh                         # Script facilitador de execução da suíte de testes
+├── server.py                            # Ponto de entrada nativo do servidor Python
+├── Dockerfile                           # Especificação do contêiner Docker seguro (appuser)
+├── docker-compose.yml                   # Orquestração do serviço e volume do SQLite
+├── pytest.ini                           # Configurações padronizadas de testes do Pytest
+├── requirements.txt                     # Dependências para execução de testes e cobertura
+├── DOCUMENTACAO_SCRIPT_GERADOR_UNIVERSAL.txt # Versão texto da documentação para avaliadores
 ├── backend/                             # Camada Back-end (Padrão MVC em Python)
 │   ├── config.py                        # Configurações centrais e variáveis de ambiente
 │   ├── database.py                      # DAO e gerenciamento de transações SQLite
@@ -180,65 +244,38 @@ pit-1_2/
 │   ├── seed_dominios.sql                # Catálogos de papéis e tipos de compromisso
 │   ├── seed_demo.sql                    # Carga inicial pedagógica
 │   └── menhelpher.db                    # Banco de dados SQLite ativo (gerado)
-├── tests/                               # Suíte de Testes Automatizados (56 testes)
+├── tests/                               # Suíte com 112 Testes Automatizados (100% Cobertura Backend)
 │   ├── helpers.py                       # Fixture com banco isolado temporário
 │   ├── test_models.py                   # Testes unitários da camada Model
 │   ├── test_api_router.py               # Testes do roteador e controllers
 │   ├── test_http_integration.py         # Testes ponta-a-ponta com servidor HTTP real
 │   ├── test_frontend_estrutura.py       # Testes estáticos de integridade HTML/ARIA
+│   ├── test_unit_controllers.py         # Testes unitários isolados dos controllers (com mocks)
+│   ├── test_unit_views.py               # Testes unitários das views de serialização JSON
+│   ├── test_unit_config_errors.py       # Testes unitários de configurações e erros HTTP
+│   ├── test_unit_database.py            # Testes unitários transacionais do DAO SQLite
+│   ├── test_unit_http_server.py         # Testes unitários do manipulador HTTP e cabeçalhos
+│   ├── test_unit_server.py              # Testes unitários do ponto de entrada server.py
+│   ├── test_unit_iniciar_ambiente_testador.py # Testes do script inicializador universal
 │   └── frontend/
 │       └── runner.html                  # Executador de testes unitários no navegador
-├── docs/                                # Documentações Acadêmicas Completas
-│   ├── pit1/
-│   │   ├── RELATORIO_PIT_I.md           # Relatório acadêmico original do PIT I
-│   │   └── CARTAZ_CAMPANHA_DIVULGACAO.md# Cartaz de divulgação nos laboratórios
-│   ├── pit2/
-│   │   ├── RELATORIO_PIT_II.md          # Relatório técnico consolidado do PIT II
-│   │   ├── TESTES_DE_PARES_VALIDACAO.md # Laudos dos 5 testes com pares (Situação 3)
-│   │   ├── MANUAL_DE_USO_E_INSTALACAO.md# Manual detalhado de instalação e uso
-│   │   └── ROTEIRO_GRAVACAO_VIDEO_5MIN.md# Roteiro cronometrado para o vídeo narrado
-│   └── referencias/                     # PDFs e manuais de orientação da disciplina
-├── server.py                            # Ponto de entrada executável da aplicação
-└── requirements.txt                     # Metadados e dependências opcionais
+└── docs/                                # Documentações Acadêmicas Completas
+    ├── pit1/
+    │   ├── RELATORIO_PIT_I.md           # Relatório acadêmico original do PIT I
+    │   └── CARTAZ_CAMPANHA_DIVULGACAO.md# Cartaz de divulgação nos laboratórios
+    └── pit2/
+        ├── RELATORIO_PIT_II.md          # Relatório técnico consolidado do PIT II
+        ├── MANUAL_DE_USO_E_INSTALACAO.md# Manual detalhado de instalação e uso
+        ├── GUIA_TESTADORES_CONTAINER.md # Guia de testes e critérios de aceite via contêiner
+        ├── DOCUMENTACAO_SCRIPT_GERADOR_UNIVERSAL.md # Documentação do inicializador universal
+        └── ROTEIRO_GRAVACAO_VIDEO_5MIN.md# Roteiro cronometrado para o vídeo narrado
 ```
-
----
-
-## 💻 Como Executar e Testar Localmente
-
-### 📋 Pré-requisitos
-- **Python 3.8+** instalado.
-- Qualquer navegador web moderno.
-
-### 🐳 Inicialização Dinâmica com 1 Comando (Recomendado para Testadores e Avaliadores)
-
-O projeto conta com scripts automatizados para subir a aplicação conteinerizada, verificar saúde e abrir o navegador automaticamente:
-
-- **No Linux / macOS / WSL:**
-  ```bash
-  ./executar_container.sh
-  ```
-- **No Windows:**
-  Dê um duplo clique no arquivo `executar_container.bat` ou execute no prompt de comando.
-
-> 📖 **Guia Completo para Avaliadores e Testadores:** Veja o passo a passo com critérios de aceite, endpoints e testes em [`docs/pit2/GUIA_TESTADORES_CONTAINER.md`](file:///home/julio/pit-1_2/docs/pit2/GUIA_TESTADORES_CONTAINER.md).
-
-### 🚀 Inicialização Local Direta (Python Puro, sem Docker)
-
-1. Inicie o servidor integrado:
-```bash
-python3 server.py
-```
-*(No Windows, utilize `python server.py`).*
-
-2. Acesse a aplicação no navegador:  
-👉 **[http://localhost:8000](http://localhost:8000)**
 
 ---
 
 ## 🧪 Execução dos Testes Automatizados
 
-O projeto conta com **106 testes automatizados** cobrindo regras de negócio, camada Model, Controllers, Views, Router, servidor HTTP, banco de dados relacional e integridade de interface, alcançando **100% de cobertura de código no backend**.
+O projeto conta com **112 testes automatizados** cobrindo regras de negócio, camada Model, Controllers, Views, Router, servidor HTTP, banco de dados relacional e integridade de interface, alcançando **100% de cobertura de código no backend**.
 
 ### Execução via módulo padrão `unittest` (Zero dependências externas):
 ```bash
@@ -247,7 +284,7 @@ python3 -m unittest discover -s tests -t .
 
 Resultado esperado:
 ```text
-Ran 106 tests in ~13s
+Ran 112 tests in ~14s
 OK
 ```
 
@@ -259,7 +296,12 @@ pytest --cov=backend --cov-report=term-missing
 Resultado esperado:
 ```text
 TOTAL: 331 statements, 0 missing, 100% coverage
-================ 106 passed in ~13s ================
+================ 112 passed in ~14s ================
+```
+
+### Execução via script auxiliar automatizado:
+```bash
+./run_tests.sh
 ```
 
 Para executar a suíte de testes unitários do front-end no navegador (JavaScript com asserções em tempo real), abra o arquivo `tests/frontend/runner.html` diretamente no seu navegador.
