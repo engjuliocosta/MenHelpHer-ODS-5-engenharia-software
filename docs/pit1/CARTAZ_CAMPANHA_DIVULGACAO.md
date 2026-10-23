@@ -1,7 +1,8 @@
 # Material de Divulgação: Campanha EquiTech ODS 5
 ## Semana de Sensibilização sobre Equidade de Gênero na Engenharia de Software
 
-> **Iniciativa Acadêmica:** Projeto Integrado Transdisciplinar (PIT I)  
+> **Iniciativa Acadêmica:** Projeto Integrado Transdisciplinar (PIT I e PIT II)  
+> **Instituição:** Universidade Cruzeiro do Sul  
 > **Discente Responsável:** Julio Costa  
 > **Público:** Alunos, Professores e Profissionais de Engenharia de Software e TI
 

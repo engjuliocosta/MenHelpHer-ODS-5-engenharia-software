@@ -6,6 +6,7 @@ psycopg2-binary
 whitenoise
 django-crispy-forms
 pytest
+pytest-cov
 pytest-django
 python-dotenv
 qrcode

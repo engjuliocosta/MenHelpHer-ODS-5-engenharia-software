@@ -22,6 +22,7 @@ def main():
     print("=" * 64)
     print(" EquiTech ODS 5 - Portal MenHelpHer em execução!")
     print(" Projeto Integrado Transdisciplinar - Engenharia de Software")
+    print(" Instituição: Universidade Cruzeiro do Sul")
     print(" Aluno: Julio Costa")
     print(f" Banco de dados: {config.DATABASE_PATH}")
     print(f" Acesse no navegador: http://localhost:{porta}")

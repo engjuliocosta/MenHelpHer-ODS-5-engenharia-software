@@ -2,8 +2,9 @@
 ## MenHelpHer / EquiTech ODS 5 — Engenharia de Software
 
 > **Projeto:** MenHelpHer — Plataforma de Equidade de Gênero na Engenharia de Software  
+> **Instituição:** Universidade Cruzeiro do Sul  
 > **Componente Curricular:** PIT I e PIT II  
-> **Autor:** Julio Costa
+> **Autor:** Julio Costa  
 
 ---
 
@@ -77,19 +78,27 @@ MENHELPHER_PORT=8080 python3 server.py
 ---
 
 ## 5. Como Executar a Suíte de Testes Automatizados
-O projeto conta com testes unitários, testes de integração RESTful e testes estáticos de integridade. Para rodar toda a suíte:
+O projeto conta com testes unitários em Python puro para todas as camadas do backend (Model, View, Controller, Database, Router, Config, Errors, Http Server), além de testes de integração RESTful e integridade de interface:
 
+### 5.1 Execução padrão (Zero dependências externas):
 ```bash
 python3 -m unittest discover -s tests -t .
 ```
 
-A saída esperada indicará a execução dos 56 testes automatizados com resultado `OK`:
+A saída esperada indicará a execução dos 106 testes automatizados com resultado `OK`:
 ```text
-........................................................
-----------------------------------------------------------------------
-Ran 56 tests in ~12s
+Ran 106 tests in ~13s
 
 OK
+```
+
+### 5.2 Execução com Pytest e Cobertura (100% de Cobertura Backend):
+```bash
+pytest --cov=backend --cov-report=term-missing
+```
+```text
+TOTAL: 331 statements, 0 missing, 100% coverage
+================ 106 passed in ~13s ================
 ```
 
 Para testar o front-end via navegador (testes de unidade em JavaScript sem Node.js):

@@ -106,6 +106,10 @@ class CompromissoModelTest(BancoTemporarioTestCase):
         self.assertEqual(novo["nome"], nome)
         self.assertEqual(len(self.model.listar()), 6)
 
+    def test_buscar_inexistente_lanca_not_found(self):
+        with self.assertRaises(NotFoundError):
+            self.model.buscar(99999)
+
     def test_estatisticas(self):
         est = self.model.estatisticas()
         self.assertEqual(est["total"], 5)
@@ -149,6 +153,11 @@ class AvaliacaoModelTest(BancoTemporarioTestCase):
         self.assertEqual(est["total"], 3)
         self.assertEqual(est["media_clareza"], 5.0)
         self.assertEqual(est["media_aprendizado_vieses"], 4.7)
+
+    def test_validar_dados_nao_dicionario(self):
+        with self.assertRaises(ValidationError) as ctx:
+            self.model.validar(["lista_ao_inves_de_dict"])
+        self.assertIn("Corpo da requisição inválido", str(ctx.exception))
 
 
 class AvaliacaoSemDadosTest(BancoTemporarioTestCase):

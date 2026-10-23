@@ -2,6 +2,7 @@
 ## Plataforma de Sensibilização e Equidade de Gênero na Engenharia de Software
 
 > **Projeto Integrado Transdisciplinar (PIT I e PIT II)**  
+> **Instituição de Ensino Superior:** Universidade Cruzeiro do Sul  
 > **Curso:** Bacharelado em Engenharia de Software  
 > **Autor / Discente:** Julio Costa  
 > **Ciclo de Desenvolvimento:** Iniciado em **PIT I** (Concepção, Design Thinking e Prototipação) e Concluído em **PIT II** (Arquitetura MVC, SGBD Relacional, 56 Testes Automatizados e Validação com Pares)  
@@ -229,19 +230,31 @@ python3 server.py
 
 ## 🧪 Execução dos Testes Automatizados
 
-O projeto conta com **56 testes automatizados** cobrindo regras de negócio, persistência, rotas RESTful e integridade de interface. Para executá-los:
+O projeto conta com **106 testes automatizados** cobrindo regras de negócio, camada Model, Controllers, Views, Router, servidor HTTP, banco de dados relacional e integridade de interface, alcançando **100% de cobertura de código no backend**.
 
+### Execução via módulo padrão `unittest` (Zero dependências externas):
 ```bash
 python3 -m unittest discover -s tests -t .
 ```
 
 Resultado esperado:
 ```text
-Ran 56 tests in ~12s
+Ran 106 tests in ~13s
 OK
 ```
 
-Para executar a suíte de testes do front-end no navegador (testes de JavaScript em `runner.html`), abra o arquivo `tests/frontend/runner.html` no navegador.
+### Execução via `pytest` com relatório de cobertura (opcional):
+```bash
+pytest --cov=backend --cov-report=term-missing
+```
+
+Resultado esperado:
+```text
+TOTAL: 331 statements, 0 missing, 100% coverage
+================ 106 passed in ~13s ================
+```
+
+Para executar a suíte de testes unitários do front-end no navegador (JavaScript com asserções em tempo real), abra o arquivo `tests/frontend/runner.html` diretamente no seu navegador.
 
 ---
 
@@ -249,6 +262,7 @@ Para executar a suíte de testes do front-end no navegador (testes de JavaScript
 
 - **Discente:** Julio Costa
 - **Curso:** Bacharelado em Engenharia de Software
+- **Instituição:** Universidade Cruzeiro do Sul (Cruzeiro do Sul Virtual)
 - **Disciplinas:** Projeto Integrado Transdisciplinar I e II (PIT I e PIT II)
 - **Ano de Conclusão:** 2026
 - **Licença:** MIT (Educacional e Aberta)

@@ -1,8 +1,9 @@
 # Roteiro de Gravação do Vídeo de Apresentação (Até 5 Minutos)
 ## MenHelpHer / EquiTech ODS 5 — Conclusão PIT II
 
+> **Instituição:** Universidade Cruzeiro do Sul  
 > **Componente Curricular:** Projeto Integrado Transdisciplinar II (PIT II)  
-> **Discente:** Julio Costa
+> **Discente:** Julio Costa  
 > **Tempo Total Alvo:** Entre 4 minutos e 30 segundos e 5 minutos (rigorosamente dentro do limite acadêmico de até 5 minutos).  
 > **Formato de Entrega:** Vídeo narrado com captura de tela da aplicação em funcionamento local (`http://localhost:8000`).
 
@@ -20,9 +21,9 @@
 ### Bloco 1: Abertura, Contexto Acadêmico e ODS 5 (0:00 a 0:45)
 - **O que mostrar na tela:** Página inicial da plataforma (`http://localhost:8000`), destacando a barra superior de identificação acadêmica e a seção Hero.
 - **Fala sugerida:**
-  > *"Olá, professores, tutores e colegas! Meu nome é Julio Costa, discente de Engenharia de Software, e estou aqui para apresentar a conclusão do meu Projeto Integrado Transdisciplinar II (PIT II), a plataforma MenHelpHer / EquiTech ODS 5.*  
+  > *"Olá, professores, tutores e colegas da Universidade Cruzeiro do Sul! Meu nome é Julio Costa, discente de Engenharia de Software, e estou aqui para apresentar a conclusão do meu Projeto Integrado Transdisciplinar II (PIT II), a plataforma MenHelpHer / EquiTech ODS 5.*  
   > *Este projeto iniciou no PIT I, onde planejamos e prototipamos uma solução sociotécnica focada no Objetivo de Desenvolvimento Sustentável 5 da ONU, combatendo vieses inconscientes e a sub-representação feminina em tecnologia com apoio do Programa Meninas Digitais da SBC e da campanha HeForShe da ONU Mulheres.*  
-  > *Agora, no PIT II, evoluímos a solução para uma arquitetura profissional Model-View-Controller (MVC) com SGBD relacional, suíte de 56 testes automatizados e validação com pares."*
+  > *Agora, no PIT II, evoluímos a solução para uma arquitetura profissional Model-View-Controller (MVC) com SGBD relacional, suíte de testes automatizados e validação com pares."*
 
 ---
 
@@ -61,8 +62,8 @@
 ### Bloco 5: Avaliação de Impacto, Testes e Encerramento (3:45 a 5:00)
 - **O que mostrar na tela:**
   - Clicar na aba "📝 Avaliação de Impacto", enviar uma avaliação e destacar o painel dinâmico de "Métricas Consolidadas da Campanha".
-  - Alternar rapidamente para o terminal e executar o comando de testes: `python3 -m unittest discover -s tests -t .`, mostrando os 56 testes passando em verde.
+  - Alternar rapidamente para o terminal e executar o comando de testes: `python3 -m unittest discover -s tests -t .`, mostrando os 106 testes passando em verde com 100% de cobertura backend.
 - **Fala sugerida:**
   > *"Na última aba, temos a Avaliação de Impacto da Campanha, correspondente à Etapa 5 do projeto. As notas submetidas alimentam em tempo real o painel de métricas consolidadas através do nosso Controller de Métricas.*  
-  > *Para comprovar a excelência de engenharia exigida na Situação 3 do PIT II, desenvolvemos uma suíte com 56 testes automatizados que cobrem modelos de domínio, rotas RESTful, integridade estática e integração HTTP real. Além disso, submetemos o sistema a 5 avaliadores e dublês de usuário, cujos laudos resultaram em melhorias cruciais como proteção XSS e navegação completa por teclado.*  
+  > *Para comprovar a excelência de engenharia exigida na Situação 3 do PIT II, desenvolvemos uma suíte com 106 testes automatizados que cobrem modelos de domínio, controllers com mocks, views de serialização, rotas RESTful, integridade estática e integração HTTP real com 100% de cobertura de código no backend. Além disso, submetemos o sistema a 5 avaliadores e dublês de usuário, cujos laudos resultaram em melhorias cruciais como proteção XSS e navegação completa por teclado.*  
   > *Desta forma, encerramos com êxito o ciclo entre PIT I e PIT II, entregando um artefato sociotécnico completo, seguro e com impacto social direto. Muito obrigado a todos!"*

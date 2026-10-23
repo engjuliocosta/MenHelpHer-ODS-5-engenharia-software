@@ -1,10 +1,11 @@
 # Relatório Técnico do Projeto Integrado Transdisciplinar II (PIT II)
 ## MenHelpHer / EquiTech ODS 5 — Engenharia de Software e Equidade de Gênero
 
-> **Instituição de Ensino Superior:** Bacharelado em Engenharia de Software  
+> **Instituição de Ensino Superior:** Universidade Cruzeiro do Sul (Cruzeiro do Sul Virtual)  
+> **Curso:** Bacharelado em Engenharia de Software  
 > **Componente Curricular:** Projeto Integrado Transdisciplinar II (PIT II)  
 > **Sequência Acadêmica:** Iniciado no PIT I (Concepção, Design Thinking e Prototipação) e Concluído no PIT II (Arquitetura MVC, SGBD, Testes de Integração e Validação por Pares)  
-> **Discente:** Julio Costa
+> **Discente:** Julio Costa  
 > **Tema Central:** ODS 5 da ONU (Agenda 2030 - Metas 5.1, 5.5 e 5.b)  
 > **Alinhamentos:** Programa Meninas Digitais (SBC), Movimento HeForShe (ONU Mulheres) e Código de Ética ACM/IEEE  
 
@@ -194,12 +195,12 @@ pit-1_2/
 
 ### 4.1 Pirâmide de Testes Implementada
 Seguindo o Modelo V e a pirâmide de testes de software:
-- **Testes Unitários:** Validação exaustiva de regras de negócio, limites de campos, sanitização de strings, neutralização de scripts (XSS) e cálculo de métricas agregadas.
-- **Testes de Integração:** Validação da comunicação entre controllers, models e o banco de dados em isolamento transacional.
-- **Testes Ponta a Ponta (E2E HTTP):** Levantamento de servidor real em porta efêmera, simulando clientes web reais com chamadas GET, POST, OPTIONS, verificando códigos HTTP (200, 201, 204, 400, 404, 405, 413) e cabeçalhos de segurança (`X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`).
+- **Testes Unitários:** Validação exaustiva isolada de regras de negócio, camada Model, Controllers com mocks, Views (serialização e formatação de datas), tratamento de erros customizados, configurações de ambiente e manipulador HTTP.
+- **Testes de Integração:** Validação da comunicação entre controllers, models e o banco de dados em isolamento transacional SQLite.
+- **Testes Ponta a Ponta (E2E HTTP):** Levantamento de servidor real em porta efêmera, simulando clientes web reais com chamadas GET, POST, OPTIONS, verificando códigos HTTP (200, 201, 204, 400, 404, 405, 413) e cabeçalhos de segurança (`X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Referrer-Policy: no-referrer`, CORS).
 - **Testes de Integridade de Interface:** Garantia de correspondência 1-para-1 entre os campos `<select>` do HTML e os domínios registrados no banco de dados.
 
-**Resultado da Suíte Automatizada:** 56 testes executados e aprovados com 100% de sucesso em ambiente limpo.
+**Resultado da Suíte Automatizada:** 106 testes executados e aprovados com 100% de sucesso em ambiente limpo e 100% de cobertura de código no backend (`pytest-cov`).
 
 ---
 
@@ -220,4 +221,4 @@ Conforme orientação explícita do PIT II, a solução foi submetida a **5 estu
 A transição de PIT I para PIT II permitiu transformar uma ideia de impacto social em um produto de software maduro, seguro e em conformidade com as melhores práticas de Engenharia de Software:
 - **Sociotécnico:** Atendimento rigoroso ao ODS 5 da ONU e ao Programa Meninas Digitais da SBC.
 - **Arquitetural:** Separação clara em MVC, desacoplamento e portabilidade de dados.
-- **Qualidade Assegurada:** 56 testes automatizados, validação empírica com pares e acessibilidade WCAG.
+- **Qualidade Assegurada:** 106 testes automatizados (100% de cobertura backend), validação empírica com pares e acessibilidade WCAG.
