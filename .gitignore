@@ -1,16 +1,40 @@
+# Python e ambiente
 __pycache__/
 *.py[cod]
 *$py.class
 *.log
-.DS_Store
-.markdown-collab/
-.vscode/
-.idea/
 .env
-*.docx
-*.db
-*.sqlite3
+.venv/
+env/
+venv/
+
+# Testes e cobertura
 .coverage
 htmlcov/
 .pytest_cache/
+
+# Banco de dados local
+*.db
+*.sqlite3
+
+# IDEs e sistema operacional
+.DS_Store
+.vscode/
+.idea/
+.markdown-collab/
+
+# Documentos oficiais acadêmicos (Cruzeiro do Sul / AVA / RGM / Avaliações)
+# Esses arquivos contêm identificações institucionais e são exclusivos da plataforma da universidade
+*.docx
+*.doc
+*.odt
+~$*
+PICPIT*
+*PITI*
+*PIT_II*
+*atividade*
+*laudo*
+*TEMPLATE*
 docs/pit2/TESTES_DE_PARES_VALIDACAO.md
+docs/pit2/TEMPLATE_LAUDOS_TESTADORES_PIT_II.docx
+TEMPLATE_LAUDOS_TESTADORES_PIT_II.docx

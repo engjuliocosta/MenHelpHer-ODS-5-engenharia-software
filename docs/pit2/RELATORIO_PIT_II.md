@@ -19,7 +19,7 @@ No **PIT II**, o desafio evoluiu para a consolidação da engenharia de software
 
 1. **Situação 1 — Revisão de Planejamento e Modelagem de Dados:** Revisitação crítica dos artefatos do PIT I, transição de arquivos estáticos simples para um SGBD relacional de mercado estruturado em Terceira Forma Normal (3FN), com DDL padronizado, integridade referencial e diagramas conceituais/lógicos (DER e Diagrama de Classes UML).
 2. **Situação 2 — Arquitetura MVC e Codificação Robusta:** Refatoração e desacoplamento de toda a aplicação no padrão arquitetural **Model-View-Controller (MVC)** em Python nativo e JavaScript modular, garantindo separação rigorosa de responsabilidades, APIs RESTful padronizadas, tratamento defensivo de exceções e manual de uso.
-3. **Situação 3 — Verificação, Testes Automatizados e Validação com Pares:** Implementação de suíte abrangente de testes automatizados (unitários, integração e estáticos), execução de roteiro de validação com 5 colegas/profissionais da área (dublês de usuário) e incorporação de melhorias apontadas no ciclo de engenharia.
+3. **Situação 3 — Verificação, Testes Automatizados e Validação com Pares:** Implementação de suíte abrangente de testes automatizados (unitários, integração e estáticos), execução de roteiro de validação com 3 colegas/profissionais da área (dublês de usuário) e incorporação de melhorias apontadas no ciclo de engenharia.
 
 ---
 
@@ -206,7 +206,7 @@ Seguindo o Modelo V e a pirâmide de testes de software:
 
 ## 5. Validação com Pares (Dublês de Usuário)
 
-Conforme orientação explícita do PIT II, a solução foi submetida a **5 estudantes e profissionais de TI**. Os feedbacks foram estruturados em template padrão e compilados no documento [`docs/pit2/TESTES_DE_PARES_VALIDACAO.md`](file:///home/julio/pit-1_2/docs/pit2/TESTES_DE_PARES_VALIDACAO.md).
+Conforme orientação explícita do PIT II, a solução foi submetida a **3 estudantes e profissionais de TI**. Os feedbacks foram estruturados em template padrão e compilados no documento [`docs/pit2/TESTES_DE_PARES_VALIDACAO.md`](file:///home/julio/pit-1_2/docs/pit2/TESTES_DE_PARES_VALIDACAO.md).
 
 ### Principais Melhorias Incorporadas a partir dos Feedbacks:
 1. **Segurança XSS:** Substituição de concatenações diretas de strings em `innerHTML` por função defensiva `Utils.escapeHtml()` no mural de compromissos.
