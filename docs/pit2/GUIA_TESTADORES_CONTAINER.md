@@ -19,16 +19,35 @@ Todo o ecossistema (servidor HTTP nativo MVC, banco relacional SQLite 3 com cat�
 
 ## ⚡ Como Executar com 1 Comando (Zero Atrito)
 
-### No Linux, macOS ou Windows via WSL:
-Abra o terminal na pasta raiz do projeto e execute:
+### 🐍 Opção 1: Inicializador Universal em Python (Recomendado para Avaliadores)
+Não requer Docker nem criação manual de ambiente virtual. Basta ter o Python 3 instalado:
 
+**No Linux, macOS ou Windows:**
+Abra o terminal na pasta raiz do projeto e execute:
+```bash
+python3 iniciar_ambiente_testador.py
+```
+*(No Windows, você também pode simplesmente dar duplo clique no arquivo [`iniciar_ambiente_testador.py`](../../iniciar_ambiente_testador.py)).*
+
+> **O que ele faz dinamicamente:**
+> 1. Detecta o Sistema Operacional e verifica se o Docker está disponível.
+> 2. Se houver Docker, inicializa o contêiner; se não houver, ativa o modo Python nativo como **fallback automático** (nenhum avaliador fica travado).
+> 3. Aguarda a validação de liveness no endpoint `/api/saude`.
+> 4. Abre o navegador padrão do sistema automaticamente em [http://localhost:8000](http://localhost:8000).
+> 5. Mantém um menu interativo no console com opções de execução de testes unitários (106 testes), logs e reset de banco.
+
+---
+
+### 🐳 Opção 2: Execução Direta via Scripts de Contêiner Docker
+
+#### No Linux, macOS ou Windows via WSL:
+Abra o terminal na pasta raiz do projeto e execute:
 ```bash
 ./executar_container.sh
 ```
 
-### No Windows (Prompt de Comando ou PowerShell):
-Dê um duplo clique no arquivo [`executar_container.bat`](file:///home/julio/pit-1_2/executar_container.bat) ou execute no CMD:
-
+#### No Windows (Prompt de Comando ou PowerShell):
+Dê um duplo clique no arquivo [`executar_container.bat`](../../executar_container.bat) ou execute no CMD:
 ```cmd
 executar_container.bat
 ```

@@ -11,7 +11,7 @@
 
 ## 💡 1. Visão Geral e Propósito
 
-O [`iniciar_ambiente_testador.py`](file:///home/julio/pit-1_2/iniciar_ambiente_testador.py) é um **script autônomo em Python puro (sem nenhuma dependência externa)** desenvolvido para resolver o desafio de distribuição da aplicação para avaliadores, professores e dublês de usuário (testadores de pares).
+O [`iniciar_ambiente_testador.py`](../../iniciar_ambiente_testador.py) é um **script autônomo em Python puro (sem nenhuma dependência externa)** desenvolvido para resolver o desafio de distribuição da aplicação para avaliadores, professores e dublês de usuário (testadores de pares).
 
 ### O Problema Resolvido:
 Em avaliações acadêmicas de Engenharia de Software, é comum que testadores utilizem diferentes sistemas operacionais (**Windows, Linux ou macOS**), tenham ou não o Docker instalado, e muitas vezes não possuam familiaridade com Git ou criação de ambientes virtuais (`venv`). 
@@ -110,7 +110,7 @@ Estudante de Engenharia de Software - Universidade Cruzeiro do Sul
 
 ## 🧪 5. Validação Automatizada do Script
 
-O próprio script `iniciar_ambiente_testador.py` possui testes unitários dedicados em [`tests/test_unit_iniciar_ambiente_testador.py`](file:///home/julio/pit-1_2/tests/test_unit_iniciar_ambiente_testador.py), cobrindo:
+O próprio script `iniciar_ambiente_testador.py` possui testes unitários dedicados em [`tests/test_unit_iniciar_ambiente_testador.py`](../../tests/test_unit_iniciar_ambiente_testador.py), cobrindo:
 - Detecção de binários do sistema operacional (`shutil.which`).
 - Detecção de daemon ativo do Docker.
 - Verificação de sucesso e tratamento de falha no endpoint de saúde (`/api/saude`).

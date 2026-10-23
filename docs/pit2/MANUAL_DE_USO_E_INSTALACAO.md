@@ -34,7 +34,7 @@ Para executar em ambiente isolado, sem necessidade de instalar dependências Pyt
 - **Windows:** Clique duplo em `executar_container.bat`
 
 O script sobe o contêiner, checa o *healthcheck*, abre o navegador automaticamente em `http://localhost:8000` e disponibiliza menu interativo.  
-Consulte o guia dedicado: [`docs/pit2/GUIA_TESTADORES_CONTAINER.md`](file:///home/julio/pit-1_2/docs/pit2/GUIA_TESTADORES_CONTAINER.md).
+Consulte o guia dedicado: [`GUIA_TESTADORES_CONTAINER.md`](GUIA_TESTADORES_CONTAINER.md).
 
 ### 3.2 Execução Direta via Python (Modo Nativo)
 Execute o script principal:

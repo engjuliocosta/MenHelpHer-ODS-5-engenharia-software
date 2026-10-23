@@ -42,7 +42,7 @@ python iniciar_ambiente_testador.py
 python3 iniciar_ambiente_testador.py
 ```
 > O script detecta seu SO, verifica/baixa os arquivos do projeto, inicia o Docker (com fallback automático para Python nativo caso você não tenha Docker), aguarda o *healthcheck* e **abre o navegador automaticamente em [http://localhost:8000](http://localhost:8000)** com menu interativo.  
-> 📖 *Documentação completa:* [`docs/pit2/DOCUMENTACAO_SCRIPT_GERADOR_UNIVERSAL.md`](file:///home/julio/pit-1_2/docs/pit2/DOCUMENTACAO_SCRIPT_GERADOR_UNIVERSAL.md) | Versão texto: [`DOCUMENTACAO_SCRIPT_GERADOR_UNIVERSAL.txt`](file:///home/julio/pit-1_2/DOCUMENTACAO_SCRIPT_GERADOR_UNIVERSAL.txt).
+> 📖 *Documentação completa:* [`docs/pit2/DOCUMENTACAO_SCRIPT_GERADOR_UNIVERSAL.md`](docs/pit2/DOCUMENTACAO_SCRIPT_GERADOR_UNIVERSAL.md) | Versão texto: [`DOCUMENTACAO_SCRIPT_GERADOR_UNIVERSAL.txt`](DOCUMENTACAO_SCRIPT_GERADOR_UNIVERSAL.txt).
 
 ### 🐳 Opção 2: Scripts Dinâmicos de Contêiner Docker
 Para quem já tem o repositório clonado e possui Docker instalado:
@@ -51,8 +51,8 @@ Para quem já tem o repositório clonado e possui Docker instalado:
   ./executar_container.sh
   ```
 - **No Windows:**
-  Dê um duplo clique no arquivo [`executar_container.bat`](file:///home/julio/pit-1_2/executar_container.bat) ou execute via Prompt de Comando.
-> 📖 *Guia passo a passo com critérios de aceite para testadores:* [`docs/pit2/GUIA_TESTADORES_CONTAINER.md`](file:///home/julio/pit-1_2/docs/pit2/GUIA_TESTADORES_CONTAINER.md).
+  Dê um duplo clique no arquivo [`executar_container.bat`](executar_container.bat) ou execute via Prompt de Comando.
+> 📖 *Guia passo a passo com critérios de aceite para testadores:* [`docs/pit2/GUIA_TESTADORES_CONTAINER.md`](docs/pit2/GUIA_TESTADORES_CONTAINER.md).
 
 ### 🚀 Opção 3: Execução Local Direta (Python Puro, sem Docker)
 ```bash
