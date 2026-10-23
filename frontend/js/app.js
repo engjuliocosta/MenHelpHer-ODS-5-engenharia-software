@@ -16,7 +16,9 @@ const App = {
     this.setupTheme();
     this.setupTabs();
     this.setupA11y();
+    this.restoreA11yPrefs();
     this.setupMobileMenu();
+    this.switchTab(this.currentTab); // sincroniza aria-selected / tabindex inicial
 
     // Inicializar módulos
     DashboardModule.init();
@@ -55,6 +57,22 @@ const App = {
         }
       });
     });
+
+    // Navegação por teclado (padrão WAI-ARIA Tabs): setas, Home e End.
+    const tabs = Array.from(document.querySelectorAll('.tab-btn'));
+    tabs.forEach((btn, idx) => {
+      btn.addEventListener('keydown', (e) => {
+        let destino = null;
+        if (e.key === 'ArrowRight') destino = (idx + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft') destino = (idx - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') destino = 0;
+        else if (e.key === 'End') destino = tabs.length - 1;
+        if (destino === null) return;
+        e.preventDefault();
+        tabs[destino].focus();
+        this.switchTab(tabs[destino].dataset.tab);
+      });
+    });
   },
 
   switchTab(tabId) {
@@ -62,13 +80,18 @@ const App = {
 
     // Atualizar botões de abas
     document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.tab === tabId);
-      btn.setAttribute('aria-selected', btn.dataset.tab === tabId);
+      const ativo = btn.dataset.tab === tabId;
+      btn.classList.toggle('active', ativo);
+      btn.setAttribute('aria-selected', String(ativo));
+      btn.tabIndex = ativo ? 0 : -1; // roving tabindex
     });
 
     // Atualizar links da navbar
     document.querySelectorAll('.nav-link[data-tab]').forEach(link => {
-      link.classList.toggle('active', link.dataset.tab === tabId);
+      const ativo = link.dataset.tab === tabId;
+      link.classList.toggle('active', ativo);
+      if (ativo) link.setAttribute('aria-current', 'page');
+      else link.removeAttribute('aria-current');
     });
 
     // Atualizar painéis
@@ -89,15 +112,35 @@ const App = {
     }
   },
 
+  setHighContrast(ativo) {
+    this.highContrast = ativo;
+    document.documentElement.setAttribute('data-high-contrast', ativo ? 'true' : 'false');
+    const contrastBtn = document.getElementById('contrastToggleBtn');
+    if (contrastBtn) {
+      contrastBtn.classList.toggle('active', ativo);
+      contrastBtn.setAttribute('aria-pressed', String(ativo));
+    }
+    localStorage.setItem('equitech_contrast', ativo ? '1' : '0');
+  },
+
+  setFontScale(fator) {
+    this.fontSizeFactor = Math.min(1.35, Math.max(0.85, Math.round(fator * 100) / 100));
+    document.documentElement.style.setProperty('--font-scale-factor', this.fontSizeFactor);
+    localStorage.setItem('equitech_font_scale', String(this.fontSizeFactor));
+  },
+
+  /** Restaura preferências de acessibilidade salvas (contraste e tamanho da fonte). */
+  restoreA11yPrefs() {
+    this.setHighContrast(localStorage.getItem('equitech_contrast') === '1');
+    const fator = parseFloat(localStorage.getItem('equitech_font_scale'));
+    if (!Number.isNaN(fator)) this.setFontScale(fator);
+  },
+
   setupA11y() {
     // Alto Contraste
     const contrastBtn = document.getElementById('contrastToggleBtn');
     if (contrastBtn) {
-      contrastBtn.addEventListener('click', () => {
-        this.highContrast = !this.highContrast;
-        document.documentElement.setAttribute('data-high-contrast', this.highContrast ? 'true' : 'false');
-        contrastBtn.classList.toggle('active', this.highContrast);
-      });
+      contrastBtn.addEventListener('click', () => this.setHighContrast(!this.highContrast));
     }
 
     // Aumento de Fonte
@@ -105,30 +148,9 @@ const App = {
     const fontMinusBtn = document.getElementById('fontMinusBtn');
     const fontResetBtn = document.getElementById('fontResetBtn');
 
-    if (fontPlusBtn) {
-      fontPlusBtn.addEventListener('click', () => {
-        if (this.fontSizeFactor < 1.35) {
-          this.fontSizeFactor += 0.08;
-          document.documentElement.style.setProperty('--font-scale-factor', this.fontSizeFactor);
-        }
-      });
-    }
-
-    if (fontMinusBtn) {
-      fontMinusBtn.addEventListener('click', () => {
-        if (this.fontSizeFactor > 0.85) {
-          this.fontSizeFactor -= 0.08;
-          document.documentElement.style.setProperty('--font-scale-factor', this.fontSizeFactor);
-        }
-      });
-    }
-
-    if (fontResetBtn) {
-      fontResetBtn.addEventListener('click', () => {
-        this.fontSizeFactor = 1.0;
-        document.documentElement.style.setProperty('--font-scale-factor', 1.0);
-      });
-    }
+    if (fontPlusBtn) fontPlusBtn.addEventListener('click', () => this.setFontScale(this.fontSizeFactor + 0.08));
+    if (fontMinusBtn) fontMinusBtn.addEventListener('click', () => this.setFontScale(this.fontSizeFactor - 0.08));
+    if (fontResetBtn) fontResetBtn.addEventListener('click', () => this.setFontScale(1.0));
 
     // Leitor de Tela Web Speech API
     const ttsBtn = document.getElementById('ttsToggleBtn');
@@ -143,7 +165,7 @@ const App = {
           const activePane = document.querySelector('.tab-pane.active');
           if (!activePane) return;
           const textToRead = activePane.innerText;
-          const utterance = new SpeechSynthesisUtterance(textToRead.slice(0, 1000));
+          const utterance = new SpeechSynthesisUtterance(textToRead.slice(0, 4000));
           utterance.lang = 'pt-BR';
           utterance.rate = 1.05;
 

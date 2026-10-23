@@ -1,7 +1,7 @@
 /* ==========================================================================
    MenHelpHer ODS 5 - Design System & Estilos Principais
    Autor: Julio Costa 
-   Curso: Engenharia de Software | PIT I
+   Curso: Engenharia de Software | PIT I e PIT II
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@300;400;500;600;700&display=swap');
@@ -651,5 +651,79 @@ button {
     background: var(--bg-surface);
     padding: 1rem;
     border-bottom: 1px solid var(--border-subtle);
+  }
+}
+/* ==========================================================================
+   PIT II - Melhorias de acessibilidade e feedback (revisão pós-testes)
+   ========================================================================== */
+
+[hidden] {
+  display: none !important;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 1000;
+  padding: 0.6rem 1rem;
+  background: var(--color-ods5);
+  color: #fff;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+#mainContentArea:focus {
+  outline: none;
+}
+
+.a11y-btn[aria-pressed="true"] {
+  box-shadow: 0 0 0 2px var(--color-accent);
+}
+
+/* Mensagens de retorno de formulários (sucesso / erro) */
+.form-feedback {
+  display: none;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  text-align: center;
+  border: 1px solid var(--color-success);
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--color-success);
+}
+
+.form-feedback[data-tipo="erro"] {
+  border-color: var(--color-danger);
+  background: rgba(239, 68, 68, 0.15);
+  color: var(--color-danger);
+}
+
+.field-error {
+  min-height: 1.1rem;
+  margin-top: 0.3rem;
+  font-size: 0.78rem;
+  color: var(--color-danger);
+}
+
+.form-control[aria-invalid="true"] {
+  border-color: var(--color-danger);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

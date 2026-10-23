@@ -11,6 +11,9 @@
   <meta name="keywords"
     content="ODS 5, Engenharia de Software, Igualdade de Gênero, Meninas Digitais, SBC, HeForShe, Mulheres na TI, Vieses Inconscientes">
 
+  <meta name="theme-color" content="#0B0F19">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23E5243B'/%3E%3Ctext x='32' y='46' font-size='40' font-weight='800' text-anchor='middle' fill='white' font-family='Arial'%3E5%3C/text%3E%3C/svg%3E">
+
   <!-- Estilos da Aplicação -->
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/dashboard.css">
@@ -19,13 +22,14 @@
 </head>
 
 <body>
+  <a class="skip-link" href="#mainContentArea">Pular para o conteúdo principal</a>
   <div class="ambient-glow" aria-hidden="true"></div>
 
   <!-- Barra Superior de Acessibilidade & Identificação Acadêmica -->
   <aside class="top-bar" aria-label="Barra de Acessibilidade e Identificação do Projeto">
     <div class="container top-bar-inner">
       <div class="academic-badge">
-        <span>🎓 <strong>Projeto Integrado Transdisciplinar (PIT I)</strong> — Engenharia de Software</span>
+        <span>🎓 <strong>Projeto Integrado Transdisciplinar (PIT I e II)</strong> — Engenharia de Software</span>
         <span style="opacity: 0.6;">|</span>
         <span>Autor: <strong>Julio Costa</strong></span>
       </div>
@@ -42,7 +46,7 @@
         <button class="a11y-btn" id="fontPlusBtn" title="Aumentar tamanho da fonte" aria-label="Aumentar fonte">
           A+
         </button>
-        <button class="a11y-btn" id="contrastToggleBtn" title="Alternar modo de alto contraste">
+        <button class="a11y-btn" id="contrastToggleBtn" aria-pressed="false" title="Alternar modo de alto contraste">
           👁️ Alto Contraste
         </button>
         <button class="a11y-btn" id="themeToggleBtn" onclick="App.toggleTheme()" title="Alternar tema claro e escuro">
@@ -80,7 +84,7 @@
   </header>
 
   <!-- Conteúdo Principal -->
-  <main class="container" id="mainContentArea">
+  <main class="container" id="mainContentArea" tabindex="-1">
     <!-- Hero Section -->
     <section class="hero" id="inicio">
       <div class="hero-pill">
@@ -240,11 +244,11 @@
         </div>
         <div class="heforshe-stats">
           <div class="heforshe-stat-item">
-            <span class="heforshe-stat-number" id="totalCommitmentsCount">5</span>
+            <span class="heforshe-stat-number" id="totalCommitmentsCount">0</span>
             <span class="heforshe-stat-label">Compromissos Firmados</span>
           </div>
           <div class="heforshe-stat-item">
-            <span class="heforshe-stat-number" id="totalAlliesCount">195</span>
+            <span class="heforshe-stat-number" id="totalAlliesCount">0</span>
             <span class="heforshe-stat-label">Apoios Registrados</span>
           </div>
         </div>
@@ -261,7 +265,9 @@
           <form id="commitmentForm">
             <div class="form-group">
               <label for="committerName" class="form-label">Seu Nome / Como deseja ser identificado</label>
-              <input type="text" id="committerName" class="form-control" placeholder="Ex: Júlio Alves" required>
+              <input type="text" id="committerName" class="form-control" placeholder="Ex: Júlio Alves" required
+                minlength="2" maxlength="80" autocomplete="name" aria-describedby="err-committerName">
+              <div class="field-error" id="err-committerName" role="alert"></div>
             </div>
 
             <div class="form-group">
@@ -279,11 +285,11 @@
             <div class="form-group">
               <label for="commitmentType" class="form-label">Ação Prática que Você Assume</label>
               <select id="commitmentType" class="form-control" required>
-                <option value="Code Review Inclusivo">Revisão de Código Inclusiva e Respeitosa</option>
-                <option value="Combate ao Manterrupting">Combater Interrupções em Reuniões Técnicas</option>
-                <option value="Mentoria Ativa">Mentoria para Mulheres em Computação</option>
-                <option value="Liderança Técnica">Apoio Ativo a Lideranças Femininas</option>
-                <option value="Equidade Salarial">Defesa de Paridade Salarial e Oportunidades Justas</option>
+                <option value="Code Review Inclusivo" data-label="Revisão Respeitosa">Revisão de Código Inclusiva e Respeitosa</option>
+                <option value="Combate ao Manterrupting" data-label="Voz Ativa nas Reuniões">Combater Interrupções em Reuniões Técnicas</option>
+                <option value="Mentoria Ativa" data-label="Mentoria & Apoio">Mentoria para Mulheres em Computação</option>
+                <option value="Liderança Técnica" data-label="Fomento à Liderança">Apoio Ativo a Lideranças Femininas</option>
+                <option value="Equidade Salarial" data-label="Contratação Justa">Defesa de Paridade Salarial e Oportunidades Justas</option>
               </select>
             </div>
 
@@ -291,38 +297,36 @@
               <label for="commitmentMsg" class="form-label">Sua Declaração de Compromisso</label>
               <textarea id="commitmentMsg" class="form-control"
                 placeholder="Descreva como você aplicará a equidade de gênero na sua rotina acadêmica ou profissional..."
-                required></textarea>
+                required minlength="10" maxlength="500" aria-describedby="err-commitmentMsg"></textarea>
+              <div class="field-error" id="err-commitmentMsg" role="alert"></div>
             </div>
 
             <button type="submit" class="btn btn-primary" style="width: 100%;">
               🤝 Publicar Compromisso no Mural
             </button>
 
-            <div id="formSuccessMsg"
-              style="display: none; margin-top: 1rem; padding: 0.75rem; background: rgba(16, 185, 129, 0.15); border: 1px solid var(--color-success); border-radius: var(--radius-sm); font-size: 0.85rem; color: var(--color-success); text-align: center;">
-              ✅ Seu compromisso foi publicado com sucesso no mural!
-            </div>
+            <div id="formSuccessMsg" class="form-feedback" role="status" data-tipo="sucesso"></div>
+            <div id="formErrorMsg" class="form-feedback" role="alert" data-tipo="erro"></div>
           </form>
         </aside>
 
         <!-- Feed de Compromissos com Filtros -->
-        <section>
+        <section aria-labelledby="feedTitle">
           <div class="mural-controls">
-            <span style="font-weight: 700; font-size: 1.05rem;">Compromissos da Comunidade</span>
+            <span id="feedTitle" style="font-weight: 700; font-size: 1.05rem;">Compromissos da Comunidade</span>
             <div class="filter-pills" role="group" aria-label="Filtrar compromissos por perfil">
-              <button class="filter-pill active" data-filter="todos"
-                onclick="MuralModule.setFilter('todos')">Todos</button>
-              <button class="filter-pill" data-filter="Estudante"
-                onclick="MuralModule.setFilter('Estudante')">Discentes</button>
-              <button class="filter-pill" data-filter="Docente"
-                onclick="MuralModule.setFilter('Docente')">Docentes</button>
-              <button class="filter-pill" data-filter="Lead" onclick="MuralModule.setFilter('Lead')">Tech Leads</button>
-              <button class="filter-pill" data-filter="Engenheir"
-                onclick="MuralModule.setFilter('Engenheir')">Engenheiros(as)</button>
+              <button type="button" class="filter-pill active" data-filter="todos" aria-pressed="true">Todos</button>
+              <button type="button" class="filter-pill" data-filter="Estudante" aria-pressed="false">Discentes</button>
+              <button type="button" class="filter-pill" data-filter="Docente" aria-pressed="false">Docentes</button>
+              <button type="button" class="filter-pill" data-filter="Lead" aria-pressed="false">Tech Leads</button>
+              <button type="button" class="filter-pill" data-filter="Engenheir" aria-pressed="false">Engenheiros(as)</button>
             </div>
           </div>
 
-          <div class="commitments-feed" id="commitmentsFeed">
+          <div id="muralStatus" class="mural-status" role="status" hidden></div>
+          <div id="muralFeedback" class="form-feedback" role="alert" data-tipo="erro"></div>
+
+          <div class="commitments-feed" id="commitmentsFeed" aria-live="polite">
             <!-- Renderizado dinamicamente -->
           </div>
         </section>
@@ -456,19 +460,28 @@
             <div class="form-group">
               <label for="evalComentario" class="form-label">5. Comentários ou sugestões para a campanha:</label>
               <textarea id="evalComentario" class="form-control"
-                placeholder="Deixe sua percepção sobre a iniciativa..."></textarea>
+                placeholder="Deixe sua percepção sobre a iniciativa..." maxlength="500"></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary" style="width: 100%;">
               📤 Enviar Avaliação de Impacto
             </button>
 
-            <div id="evalSuccessMsg"
-              style="display: none; margin-top: 1rem; padding: 0.75rem; background: rgba(16, 185, 129, 0.15); border: 1px solid var(--color-success); border-radius: var(--radius-sm); font-size: 0.85rem; color: var(--color-success); text-align: center;">
-              🎉 Obrigado! Sua avaliação foi registrada e computada nas métricas do projeto.
-            </div>
+            <div id="evalSuccessMsg" class="form-feedback" role="status" data-tipo="sucesso"></div>
+            <div id="evalErrorMsg" class="form-feedback" role="alert" data-tipo="erro"></div>
           </div>
         </form>
+      </div>
+
+      <!-- Métricas consolidadas da campanha (somente com o servidor ativo) -->
+      <div class="metricas-campanha" id="metricasCampanha" hidden>
+        <h3>Métricas Consolidadas da Campanha</h3>
+        <div class="metricas-grid">
+          <div class="metrica-item"><span class="metrica-valor" id="metTotalAvaliacoes">0</span><span class="metrica-rotulo">Avaliações recebidas</span></div>
+          <div class="metrica-item"><span class="metrica-valor" id="metClareza">–</span><span class="metrica-rotulo">Clareza (média 1–5)</span></div>
+          <div class="metrica-item"><span class="metrica-valor" id="metVieses">–</span><span class="metrica-rotulo">Aprendizado sobre vieses (média)</span></div>
+          <div class="metrica-item"><span class="metrica-valor" id="metOds5">–</span><span class="metrica-rotulo">Relevância do ODS 5 (média)</span></div>
+        </div>
       </div>
     </section>
   </main>
@@ -483,7 +496,7 @@
             <span class="logo-title" style="font-size: 1.1rem;">EquiTech ODS 5</span>
           </div>
           <p>
-            Projeto Integrado Transdisciplinar (PIT I) desenvolvido para sensibilização sobre a igualdade de gênero na
+            Projeto Integrado Transdisciplinar (PIT I e PIT II) desenvolvido para sensibilização sobre a igualdade de gênero na
             Engenharia de Software e promoção das metas 5.1, 5.5 e 5.b da Agenda 2030 da ONU.
           </p>
         </div>
@@ -504,7 +517,7 @@
           <ul class="footer-links" style="font-size: 0.85rem; color: var(--text-muted);">
             <li><strong>Estudante:</strong> Julio Costa</li>
             <li><strong>Curso:</strong> Engenharia de Software</li>
-            <li><strong>Disciplina:</strong> PIT I</li>
+            <li><strong>Disciplinas:</strong> PIT I e PIT II</li>
             <li><strong>Instituição:</strong> Universidade / EAD</li>
           </ul>
         </div>
@@ -523,6 +536,8 @@
   </footer>
 
   <!-- Scripts da Aplicação -->
+  <script src="js/utils.js"></script>
+  <script src="js/api.js"></script>
   <script src="js/data.js"></script>
   <script src="js/dashboard.js"></script>
   <script src="js/simulator.js"></script>

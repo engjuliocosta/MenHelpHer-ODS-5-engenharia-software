@@ -10,7 +10,7 @@ const EQUI_DATA = {
     subtitulo: "Plataforma de Sensibilização e Equidade de Gênero na Engenharia de Software",
     autor: "Julio Costa",
     curso: "Engenharia de Software",
-    disciplina: "Projeto Integrado Transdisciplinar (PIT I)",
+    disciplina: "Projeto Integrado Transdisciplinar (PIT I e PIT II)",
     ano: "2026",
     movimentos: [
       "ODS 5 - Igualdade de Gênero (ONU Brasil / Agenda 2030)",

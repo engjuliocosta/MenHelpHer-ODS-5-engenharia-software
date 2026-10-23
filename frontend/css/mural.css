@@ -329,3 +329,135 @@ textarea.form-control {
   color: #FFF;
   border-color: var(--color-ods5);
 }
+/* ==========================================================================
+   PIT II - Componentes do mural (antes estilizados inline) e métricas
+   ========================================================================== */
+
+.btn-like:disabled {
+  cursor: default;
+  opacity: 0.85;
+  background: rgba(229, 36, 59, 0.12);
+}
+
+.feed-empty {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-muted);
+}
+
+.mural-status {
+  margin-bottom: 1rem;
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-info);
+  background: rgba(59, 130, 246, 0.12);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.pioneira-periodo {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-ods5-light);
+  margin-bottom: 0.25rem;
+}
+
+.pioneira-card h3 {
+  margin-bottom: 0.25rem;
+}
+
+.pioneira-titulo {
+  font-size: 0.85rem;
+  color: var(--color-primary-light);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.pioneira-card p {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.pioneira-legado {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 0.5rem;
+}
+
+.checklist-card {
+  padding: 1.25rem;
+}
+
+.checklist-head {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.checklist-head strong {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+.checklist-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-ods5);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.checklist-card p {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.metricas-campanha {
+  margin-top: 2rem;
+  padding: 1.75rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+}
+
+.metricas-campanha h3 {
+  margin-bottom: 1.25rem;
+}
+
+.metricas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1rem;
+}
+
+.metrica-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem;
+  background: var(--bg-surface-elevated);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.metrica-valor {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--color-ods5-light);
+}
+
+.metrica-rotulo {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}

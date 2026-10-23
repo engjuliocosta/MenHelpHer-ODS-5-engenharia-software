@@ -1,20 +1,33 @@
-# MenHelpHer
+# MenHelpHer / EquiTech ODS 5
 ## Plataforma de Sensibilização e Equidade de Gênero na Engenharia de Software
 
-> **Projeto Integrado Transdisciplinar (PIT I)**  
+> **Projeto Integrado Transdisciplinar (PIT I e PIT II)**  
 > **Curso:** Bacharelado em Engenharia de Software  
-> **Autor / Discente:** Julio Costa  
+> **Autor / Discente:** Julio Cezar Costa Alves (Julio Costa) — RGM: 39909549  
+> **Ciclo de Desenvolvimento:** Iniciado em **PIT I** (Concepção, Design Thinking e Prototipação) e Concluído em **PIT II** (Arquitetura MVC, SGBD Relacional, 56 Testes Automatizados e Validação com Pares)  
 > **Tema Central:** ODS 5 da ONU (Metas 5.1, 5.5 e 5.b da Agenda 2030)  
-> **Metodologia:** Design Thinking + Scrum Híbrido  
-> **Alinhamento:** Programa Meninas Digitais (SBC) & Movimento HeForShe / ElesPorElas (ONU Mulheres)
+> **Alinhamentos:** Programa Meninas Digitais (SBC), Movimento HeForShe / ElesPorElas (ONU Mulheres) e Código de Ética Profissional ACM/IEEE  
 
 ---
 
-## 🌟 Visão Geral
+## 🌟 Visão Geral do Projeto
 
-A **EquiTech ODS 5** é uma aplicação web interativa e acessível (Mobile-First) projetada para combater a sub-representação feminina e os vieses inconscientes na Engenharia de Software e no setor de Tecnologia da Informação (TI).
+A **MenHelpHer (EquiTech ODS 5)** é uma aplicação web completa, acessível (WCAG 2.1) e orientada a dados, desenvolvida para combater a sub-representação feminina e os vieses inconscientes na Engenharia de Software e no setor de TI.
 
-O projeto une rigor científico, responsabilidade social e excelência técnica, demonstrando que o desenvolvimento de software é uma **atividade sociotécnica** orientada pela ética profissional (Código de Ética ACM/IEEE).
+O projeto une rigor científico, responsabilidade social e excelência técnica, demonstrando na prática que o desenvolvimento de software é uma **atividade sociotécnica** indissociável da ética profissional e da justiça de gênero.
+
+---
+
+## 🏛️ Evolução Acadêmica: Do PIT I ao PIT II
+
+| Dimensão de Engenharia | Situação no PIT I | Consolidação no PIT II |
+|---|---|---|
+| **Padrão Arquitetural** | Script monolítico procedural | **Model-View-Controller (MVC)** estrito e desacoplado |
+| **Persistência de Dados** | Arquivos estáticos JSON simples | **SGBD Relacional SQLite 3** em 3ª Forma Normal (3FN), com DDL padronizado, PKs, FKs e restrições `CHECK` |
+| **Garantia de Qualidade** | Testes manuais pontuais | **56 testes automatizados** (unitários, integração REST, ponta-a-ponta HTTP e integridade estática) |
+| **Validação com Usuários** | Avaliação preliminar de conceito | **Validação formal por pares (5 dublês de usuário)** com laudos padronizados e matriz de rastreabilidade |
+| **Segurança & Resiliência** | Validação básica de formulários | **Higienização anti-XSS**, proteção contra payloads abusivos (HTTP 413) e modo offline com fallback |
+| **Acessibilidade Digital** | Recursos visuais básicos | **WCAG 2.1:** WAI-ARIA Tabs com navegação por setas, skip link, leitor nativo e persistência de preferências |
 
 ---
 
@@ -26,9 +39,9 @@ O projeto une rigor científico, responsabilidade social e excelência técnica,
   - `15,2%`: Participação feminina em cursos de graduação em computação no Brasil (queda de 70% em relação aos anos 80).
   - `17,8%`: Mulheres no mercado de trabalho em funções técnicas de TI.
   - `13,6%`: Mulheres em posições de liderança técnica (CTOs, VPs de Engenharia, Tech Leads).
-  - `21,4%`: Disparidade salarial média em cargos técnicos equivalentes de desenvolvimento.
+  - `21,4%`: Disparidade salarial média em cargos equivalentes de desenvolvimento.
 - Visualização dinâmica do **Funil de Evasão e Liderança em Computação**.
-- Metas **5.1**, **5.5** e **5.b** da Agenda 2030 traduzidas para a prática de squads ágeis.
+- Metas **5.1**, **5.5** e **5.b** da Agenda 2030 traduzidas para a prática diária de squads ágeis.
 
 ### 2. 🎮 Simulador Gamificado de Vieses Inconscientes
 - 5 cenários práticos e realistas contextualizados na rotina de equipes de tecnologia:
@@ -47,104 +60,83 @@ O projeto une rigor científico, responsabilidade social e excelência técnica,
   - *Mentoria Ativa para Mulheres em Computação*
   - *Fomento a Lideranças Femininas*
   - *Defesa de Paridade Salarial e Oportunidades Justas*
-- Feed dinâmico com contadores de apoio (curtidas), filtros por perfil e persistência de dados.
+- Feed dinâmico com contadores de apoio (curtidas), filtros por perfil e persistência relacional com fallback.
 
 ### 4. 📚 Pioneiras Históricas & Checklist para Squads
 - Biografias e legados de **Ada Lovelace**, **Margaret Hamilton**, **Grace Hopper** e da cientista brasileira **Claudia Bauzer Medeiros**.
 - **Checklist de 6 Boas Práticas** para squads e laboratórios acadêmicos inclusivos.
 - Conexões diretas com o **Programa Meninas Digitais (SBC)** e **HeForShe**.
 
-### 5. 📝 Avaliação de Impacto da Campanha
-- Formulário eletrônico integrado para mensurar a clareza, relevância e absorção de conceitos pelos participantes (Etapa 5 do PIT).
+### 5. 📝 Avaliação de Impacto da Campanha & Métricas em Tempo Real
+- Formulário eletrônico integrado para mensurar clareza, relevância e absorção de conceitos.
+- Painel de **Métricas Consolidadas** que calcula dinamicamente as médias avaliativas através do Controller do backend.
 
 ---
 
-## ♿ Recursos de Acessibilidade (WCAG)
+## ♿ Recursos de Acessibilidade (WCAG 2.1)
 
-- **Modo Alto Contraste**: Adaptado para pessoas com baixa visão ou fotossensibilidade.
-- **Redimensionamento de Fonte Dinâmico** (`A+`, `A`, `A-`).
-- **Leitor de Tela Nativo**: Síntese de voz em português via *Web Speech API*.
-- **Alternador de Tema**: Modo Escuro (*Dark Mode*) e Modo Claro (*Light Mode*).
-- **Semântica HTML5 e ARIA**: Totalmente navegável por teclado (`Tab`, `:focus-visible`).
-
----
-
-## 🛠️ Tecnologias Utilizadas
-
-- **Frontend**: HTML5 Semântico, Vanilla CSS Moderno (Design Tokens, Glassmorphism, CSS Custom Properties), JavaScript ES6+ Modular.
-- **Backend**: Python 3 nativo (`http.server` com API RESTful JSON para gravação de compromissos, avaliações e métricas).
-- **Armazenamento**: `data/compromissos.json` e `data/avaliacoes.json` com fallback para `localStorage`.
+- **Skip Link:** Atalho no topo para usuários de teclado saltarem diretamente para o conteúdo principal.
+- **Modo Alto Contraste:** Adaptado para pessoas com baixa visão ou fotossensibilidade (persistido no navegador).
+- **Redimensionamento Dinâmico de Fonte (`A+`, `A`, `A-`)** persistido entre sessões.
+- **Leitor de Tela Nativo:** Síntese de voz em português via *Web Speech API*.
+- **WAI-ARIA Tabs:** Navegação entre abas por setas do teclado (`ArrowLeft`, `ArrowRight`, `Home`, `End`) com *roving tabindex*.
+- **Alternador de Tema:** Modo Escuro (*Dark Mode*) e Modo Claro (*Light Mode*).
 
 ---
 
-## 💻 Como Executar e Testar Localmente
+## 🛠️ Tecnologias e Arquitetura (Padrão MVC)
 
-A aplicação foi desenvolvida sem dependências externas pesadas (sem necessidade de `npm install` ou pacotes externos via `pip`), garantindo execução imediata e leve.
+```mermaid
+graph TD
+    User([Usuário / Navegador Web])
+    
+    subgraph Frontend [Camada View Cliente - HTML5 / CSS3 / Vanilla JS]
+        UI[Interface Responsiva index.html]
+        Utils[Utils.js - Sanitização & Regras Puras]
+        ApiClient[Api.js - Cliente Fetch Assíncrono]
+        AppCtrl[App.js / Mural.js / Simulator.js]
+    end
 
-### 📋 Pré-requisitos
-- **Python 3.x** instalado (disponível por padrão no Linux/macOS ou facilmente instalado no Windows).
-- Qualquer navegador web moderno (Google Chrome, Mozilla Firefox, Microsoft Edge, Safari).
+    subgraph Backend [Camada MVC - Python 3 Nativo]
+        HttpServ[http_server.py - ThreadingHTTPServer]
+        Router[router.py - Despachante RESTful]
+        
+        subgraph Controllers [Controllers]
+            CComp[CompromissosController]
+            CAval[AvaliacoesController]
+            CMetr[MetricasController]
+        end
+        
+        subgraph Models [Models]
+            MComp[CompromissoModel]
+            MAval[AvaliacaoModel]
+        end
+        
+        subgraph Views [Views JSON]
+            VJson[json_view.py]
+        end
+    end
 
----
+    subgraph Database [Camada de Persistência SGBD]
+        SQLite[(SQLite 3 - menhelpher.db / 3FN)]
+    end
 
-### 🚀 Passo a Passo Rápido
-
-#### 1. Abra o terminal na pasta do projeto:
-```bash
-cd /home/julio/pit-1_2
+    User <--> UI
+    UI <--> AppCtrl
+    AppCtrl --> Utils
+    AppCtrl --> ApiClient
+    ApiClient <-->|JSON / REST| HttpServ
+    HttpServ --> Router
+    Router --> Controllers
+    Controllers --> Models
+    Models <--> Database
+    Controllers --> Views
+    Views --> Router
 ```
 
-#### 2. Inicie o servidor integrado:
-```bash
-# No Linux / macOS:
-python3 server.py
-
-# No Windows:
-python server.py
-```
-> O terminal exibirá a mensagem de confirmação:  
-> `EquiTech ODS 5 - Portal MenHelpHer em execução!`  
-> `Acesse no navegador: http://localhost:8000`
-
-#### 3. Acesse a aplicação:
-Abra seu navegador e entre no link:  
-👉 **[http://localhost:8000](http://localhost:8000)**
-
----
-
-### 🧪 Roteiro de Testes Recomendado (O que validar na plataforma)
-
-Para comprovar o funcionamento de todos os módulos avaliados no PIT I, siga este roteiro de testes:
-
-1. **Acessibilidade & Usabilidade (Topo da Página):**
-   - Clique em **"👁️ Alto Contraste"** para alternar o modo de acessibilidade visual.
-   - Use os botões **"A+"**, **"A-"** e **"A"** para testar o redimensionamento dinâmico de fonte.
-   - Clique em **"🔊 Ler Tela"** para ouvir a leitura do conteúdo ativo via síntese de voz nativa (*Web Speech API*).
-   - Alterne entre **"☀️ Modo Claro"** e **"🌙 Modo Escuro"**.
-
-2. **📊 Teste do Painel de Indicadores (Aba 1):**
-   - Visualize os cards de dados oficiais da SBC e IPEA.
-   - Observe a animação do **Funil de Carreira em Computação** (da graduação até CTO).
-   - Verifique o gráfico circular de **Gap Salarial** (-21,4%).
-   - Leia a aplicação prática das metas **5.1**, **5.5** e **5.b** da Agenda 2030 na rotina de squads.
-
-3. **🎮 Teste do Simulador de Vieses Inconscientes (Aba 2):**
-   - Leia o primeiro cenário de **Code Review no GitHub** e selecione uma das opções.
-   - Observe o feedback imediato com a explicação ética fundamentada no **Código ACM/IEEE** e a atualização da pontuação.
-   - Avance até o fim dos 5 cenários para receber a classificação final e o badge de *"Aliado(a) da Equidade"*.
-
-4. **🤝 Teste do Mural HeForShe (Aba 3):**
-   - Clique no botão **"❤️ Apoiar"** em qualquer cartão de compromisso e veja o contador aumentar instantaneamente.
-   - Use os filtros no topo do feed (*Discentes*, *Docentes*, *Tech Leads*, *Engenheiros*) para filtrar os cards.
-   - Preencha o formulário à esquerda com seu nome, papel e mensagem e clique em **"Publicar Compromisso no Mural"**. Seu compromisso aparecerá imediatamente no feed e será gravado no arquivo `data/compromissos.json`.
-
-5. **📝 Teste da Avaliação de Impacto (Aba 5):**
-   - Preencha o formulário de feedback da semana de sensibilização e envie para validar a persistência em `data/avaliacoes.json`.
-
----
-
-### 🌐 Opção de Teste Direto (Sem Terminal)
-Caso prefira não utilizar a linha de comando, basta dar um duplo clique diretamente no arquivo [`index.html`](file:///home/julio/pit-1_2/index.html) para abri-lo no seu navegador padrão. A aplicação funcionará com todos os recursos e armazenamento local (*LocalStorage*).
+- **Frontend**: HTML5 Semântico, Vanilla CSS Moderno (Design Tokens, Glassmorphism, CSS Custom Properties), JavaScript ES6+ Modular (sem dependência de frameworks ou empacotadores).
+- **Backend**: Python 3 nativo (`ThreadingHTTPServer`, rotas RESTful JSON, modelos de validação, controllers desacoplados).
+- **Banco de Dados**: SQLite 3 com modelo relacional normalizado (3FN), DDL padronizado ANSI-SQL, chaves primárias, estrangeiras e constraints `CHECK`.
 
 ---
 
@@ -152,33 +144,112 @@ Caso prefira não utilizar a linha de comando, basta dar um duplo clique diretam
 
 ```
 pit-1_2/
-├── index.html                           # Interface web principal da plataforma
-├── server.py                            # Servidor Python com API RESTful
-├── README.md                            # Documentação geral do projeto
-├── css/
-│   ├── main.css                         # Design system, tokens, acessibilidade e temas
-│   ├── dashboard.css                    # Estilos dos KPIs e funil de liderança
-│   ├── simulator.css                    # Estilos da gamificação e cenários
-│   └── mural.css                        # Estilos do mural HeForShe e formulários
-├── js/
-│   ├── app.js                           # Controlador geral e acessibilidade
-│   ├── data.js                          # Base de dados estatísticos oficiais
-│   ├── dashboard.js                     # Renderização de indicadores e gráficos
-│   ├── simulator.js                     # Mecânica e feedback do quiz de vieses
-│   └── mural.js                         # Lógica do mural de compromissos e avaliação
-├── data/
-│   ├── compromissos.json                # Registros de compromissos comunitários
-│   └── avaliacoes.json                  # Respostas da avaliação de impacto
-└── docs/
-    ├── PROJETO_PIT_APRESENTACAO.md      # Relatório acadêmico completo do PIT I
-    └── CARTAZ_CAMPANHA_DIVULGACAO.md    # Material de divulgação e cartaz com QR Code
+├── backend/                             # Camada Back-end (Padrão MVC em Python)
+│   ├── config.py                        # Configurações centrais e variáveis de ambiente
+│   ├── database.py                      # DAO e gerenciamento de transações SQLite
+│   ├── errors.py                        # Exceções de domínio (400, 404, 405, 413)
+│   ├── router.py                        # Mapeamento de endpoints RESTful para controllers
+│   ├── http_server.py                   # Servidor multithread com cabeçalhos de segurança
+│   ├── models/                          # Camada Model (Regras de negócio e SQL)
+│   │   ├── compromisso.py
+│   │   └── avaliacao.py
+│   ├── controllers/                     # Camada Controller (Orquestração de fluxo)
+│   │   ├── compromissos_controller.py
+│   │   ├── avaliacoes_controller.py
+│   │   └── metricas_controller.py
+│   └── views/                           # Camada View (Serialização JSON)
+│       └── json_view.py
+├── frontend/                            # Camada Front-end (Interface do Usuário)
+│   ├── index.html                       # Página web acessível principal
+│   ├── css/
+│   │   ├── main.css                     # Tokens, acessibilidade e temas
+│   │   ├── dashboard.css                # Estilos dos KPIs e funil
+│   │   ├── simulator.css                # Estilos da gamificação
+│   │   └── mural.css                    # Estilos do mural e métricas
+│   └── js/
+│       ├── utils.js                     # Funções puras e higienização anti-XSS
+│       ├── api.js                       # Cliente HTTP assíncrono (Fetch API)
+│       ├── data.js                      # Base de dados estatísticos oficiais
+│       ├── dashboard.js                 # Renderização de gráficos e KPIs
+│       ├── simulator.js                 # Lógica do simulador de vieses
+│       ├── mural.js                     # Lógica do mural e avaliação
+│       └── app.js                       # Controlador geral e WCAG
+├── database/                            # Scripts SQL e Persistência SGBD
+│   ├── schema.sql                       # DDL físico do banco relacional (3FN)
+│   ├── seed_dominios.sql                # Catálogos de papéis e tipos de compromisso
+│   ├── seed_demo.sql                    # Carga inicial pedagógica
+│   └── menhelpher.db                    # Banco de dados SQLite ativo (gerado)
+├── tests/                               # Suíte de Testes Automatizados (56 testes)
+│   ├── helpers.py                       # Fixture com banco isolado temporário
+│   ├── test_models.py                   # Testes unitários da camada Model
+│   ├── test_api_router.py               # Testes do roteador e controllers
+│   ├── test_http_integration.py         # Testes ponta-a-ponta com servidor HTTP real
+│   ├── test_frontend_estrutura.py       # Testes estáticos de integridade HTML/ARIA
+│   └── frontend/
+│       └── runner.html                  # Executador de testes unitários no navegador
+├── docs/                                # Documentações Acadêmicas Completas
+│   ├── pit1/
+│   │   ├── RELATORIO_PIT_I.md           # Relatório acadêmico original do PIT I
+│   │   └── CARTAZ_CAMPANHA_DIVULGACAO.md# Cartaz de divulgação nos laboratórios
+│   ├── pit2/
+│   │   ├── RELATORIO_PIT_II.md          # Relatório técnico consolidado do PIT II
+│   │   ├── TESTES_DE_PARES_VALIDACAO.md # Laudos dos 5 testes com pares (Situação 3)
+│   │   ├── MANUAL_DE_USO_E_INSTALACAO.md# Manual detalhado de instalação e uso
+│   │   └── ROTEIRO_GRAVACAO_VIDEO_5MIN.md# Roteiro cronometrado para o vídeo narrado
+│   └── referencias/                     # PDFs e manuais de orientação da disciplina
+├── server.py                            # Ponto de entrada executável da aplicação
+└── requirements.txt                     # Metadados e dependências opcionais
 ```
 
 ---
 
-## 📜 Autor e Informações Acadêmicas
+## 💻 Como Executar e Testar Localmente
 
-- **Discente:** Julio Costa
-- **Curso:** Engenharia de Software
-- **Componente Curricular:** Projeto Integrado Transdisciplinar I (PIT I)
-- **Ano:** 2026
+### 📋 Pré-requisitos
+- **Python 3.8+** instalado.
+- Qualquer navegador web moderno.
+
+### 🚀 Inicialização Rápida
+
+1. Abra o terminal na pasta do projeto:
+```bash
+cd /home/julio/pit-1_2
+```
+
+2. Inicie o servidor integrado:
+```bash
+python3 server.py
+```
+*(No Windows, utilize `python server.py`).*
+
+3. Acesse a aplicação no navegador:  
+👉 **[http://localhost:8000](http://localhost:8000)**
+
+---
+
+## 🧪 Execução dos Testes Automatizados
+
+O projeto conta com **56 testes automatizados** cobrindo regras de negócio, persistência, rotas RESTful e integridade de interface. Para executá-los:
+
+```bash
+python3 -m unittest discover -s tests -t .
+```
+
+Resultado esperado:
+```text
+Ran 56 tests in ~12s
+OK
+```
+
+Para executar a suíte de testes do front-end no navegador (testes de JavaScript em `runner.html`), abra o arquivo `tests/frontend/runner.html` no navegador.
+
+---
+
+## 📜 Informações Acadêmicas
+
+- **Discente:** Julio Cezar Costa Alves (Julio Costa)
+- **RGM:** 39909549
+- **Curso:** Bacharelado em Engenharia de Software
+- **Disciplinas:** Projeto Integrado Transdisciplinar I e II (PIT I e PIT II)
+- **Ano de Conclusão:** 2026
+- **Licença:** MIT (Educacional e Aberta)

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Testes do Front-end - MenHelpHer</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; background: #0b0f19; color: #f9fafb; }
+    h1 { font-size: 1.4rem; }
+    .ok { color: #10b981; } .falha { color: #ef4444; font-weight: 700; }
+    #resumo { font-size: 1.1rem; font-weight: 700; margin: 1rem 0; }
+    li { margin: .2rem 0; font-family: ui-monospace, monospace; font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <h1>Testes automatizados do front-end (executar no navegador)</h1>
+  <div id="resumo">Executando…</div>
+  <ul id="lista"></ul>
+
+  <!-- Fixture de DOM usada pelos testes do mural -->
+  <div id="fixture" hidden>
+    <div id="commitmentsFeed"></div>
+    <span id="totalCommitmentsCount"></span>
+    <span id="totalAlliesCount"></span>
+    <div id="muralStatus" hidden></div>
+  </div>
+
+  <script src="../../frontend/js/utils.js"></script>
+  <script src="../../frontend/js/api.js"></script>
+  <script src="../../frontend/js/data.js"></script>
+  <script src="../../frontend/js/mural.js"></script>
+  <script>
+    // ---- Mini framework de testes (sem dependências) -----------------------
+    const casos = [];
+    const teste = (nome, fn) => casos.push({ nome, fn });
+    const igual = (obtido, esperado, msg = '') => {
+      const a = JSON.stringify(obtido), b = JSON.stringify(esperado);
+      if (a !== b) throw new Error(`${msg} esperado ${b}, obtido ${a}`);
+    };
+    const verdade = (cond, msg = 'condição falsa') => { if (!cond) throw new Error(msg); };
+
+    // ---- Utils.escapeHtml ---------------------------------------------------
+    teste('escapeHtml neutraliza tags e aspas', () => {
+      igual(Utils.escapeHtml('<img src=x onerror="a()">'), '&lt;img src=x onerror=&quot;a()&quot;&gt;');
+      igual(Utils.escapeHtml("it's & co"), 'it&#39;s &amp; co');
+    });
+    teste('escapeHtml trata null/undefined/números', () => {
+      igual(Utils.escapeHtml(null), ''); igual(Utils.escapeHtml(undefined), ''); igual(Utils.escapeHtml(42), '42');
+    });
+
+    // ---- Utils.normalizar / filtro -----------------------------------------
+    teste('normalizar remove acentos e caixa', () => igual(Utils.normalizar('Liderança TÉCNICA'), 'lideranca tecnica'));
+    const lista = [
+      { id: 1, papel: 'Estudante de Engenharia de Software', apoios: 2 },
+      { id: 2, papel: 'Docente Universitário(a)', apoios: 3 },
+      { id: 3, papel: 'Tech Lead / Arquiteto(a) de Software', apoios: 5 },
+      { id: 4, papel: 'Engenheiro(a) de Software Pleno/Sênior', apoios: 7 },
+    ];
+    teste('filtrar "todos" devolve cópia completa', () => {
+      const r = Utils.filtrarCompromissos(lista, 'todos');
+      igual(r.length, 4); verdade(r !== lista, 'deveria ser cópia');
+    });
+    teste('filtrar por Estudante/Docente/Lead/Engenheir', () => {
+      igual(Utils.filtrarCompromissos(lista, 'Estudante').map(c => c.id), [1]);
+      igual(Utils.filtrarCompromissos(lista, 'Docente').map(c => c.id), [2]);
+      igual(Utils.filtrarCompromissos(lista, 'Lead').map(c => c.id), [3]);
+      igual(Utils.filtrarCompromissos(lista, 'Engenheir').map(c => c.id), [4]);
+    });
+    teste('somarApoios soma e ignora valores inválidos', () => {
+      igual(Utils.somarApoios(lista), 17);
+      igual(Utils.somarApoios([{ apoios: 'x' }, { apoios: null }, { apoios: 4 }]), 4);
+    });
+
+    // ---- Utils.validarCompromisso -------------------------------------------
+    teste('validarCompromisso aceita dados válidos', () =>
+      igual(Utils.validarCompromisso({ nome: 'Ana', mensagem: 'Compromisso válido de teste' }), {}));
+    teste('validarCompromisso rejeita nome curto e mensagem curta', () => {
+      const e = Utils.validarCompromisso({ nome: ' A ', mensagem: 'curta' });
+      verdade(e.nome && e.mensagem);
+    });
+    teste('validarCompromisso rejeita excesso de caracteres', () => {
+      const e = Utils.validarCompromisso({ nome: 'x'.repeat(81), mensagem: 'y'.repeat(501) });
+      verdade(e.nome && e.mensagem);
+    });
+
+    // ---- Simulador: classificações ------------------------------------------
+    teste('classificarResultado: limiar de 50%', () => {
+      igual(Utils.classificarResultado(25, 50).nivel, 'aliado');
+      igual(Utils.classificarResultado(24, 50).nivel, 'formacao');
+      igual(Utils.classificarResultado(-5, 50).nivel, 'formacao');
+      igual(Utils.classificarResultado(10, 0).nivel, 'formacao');
+    });
+    teste('classificarEscolha: correto/parcial/erro', () => {
+      igual(Utils.classificarEscolha(10), 'correto'); igual(Utils.classificarEscolha(8), 'correto');
+      igual(Utils.classificarEscolha(5), 'parcial'); igual(Utils.classificarEscolha(0), 'erro');
+      igual(Utils.classificarEscolha(-5), 'erro');
+    });
+    teste('dados do simulador: 5 cenários, cada um com opção de 10 pontos', () => {
+      igual(EQUI_DATA.cenariosSimulador.length, 5);
+      EQUI_DATA.cenariosSimulador.forEach(c =>
+        verdade(c.opcoes.some(o => o.pontos === 10), `cenário ${c.id} sem opção exemplar`));
+    });
+
+    // ---- Api (fetch simulado) -----------------------------------------------
+    const fetchOriginal = window.fetch;
+    const simular = (impl) => { window.fetch = impl; };
+    const resposta = (status, corpo, json = true) => ({
+      ok: status >= 200 && status < 300, status,
+      json: async () => { if (!json) throw new Error('sem json'); return corpo; },
+    });
+
+    teste('Api: falha de rede vira ApiError com semConexao', async () => {
+      simular(async () => { throw new TypeError('network'); });
+      try { await Api.listarCompromissos(); verdade(false, 'deveria lançar'); }
+      catch (e) { verdade(e instanceof ApiError && e.semConexao); }
+    });
+    teste('Api: resposta HTML/404 de servidor estático = sem conexão', async () => {
+      simular(async () => resposta(404, null, false));
+      try { await Api.listarCompromissos(); verdade(false); }
+      catch (e) { verdade(e.semConexao); }
+    });
+    teste('Api: erro 400 preserva mensagem e campos', async () => {
+      simular(async () => resposta(400, { erro: 'Dados inválidos.', campos: { nome: 'x' } }));
+      try { await Api.criarCompromisso({}); verdade(false); }
+      catch (e) { igual(e.status, 400); igual(e.campos, { nome: 'x' }); verdade(!e.semConexao); }
+    });
+    teste('Api: sucesso devolve o JSON e usa método/URL corretos', async () => {
+      let chamada;
+      simular(async (url, opts) => { chamada = { url, opts }; return resposta(200, { apoios: 3 }); });
+      const r = await Api.apoiarCompromisso(7);
+      igual(r, { apoios: 3 }); igual(chamada.url, '/api/compromissos/7/apoios'); igual(chamada.opts.method, 'POST');
+    });
+
+    // ---- Mural: renderização segura (XSS) -----------------------------------
+    teste('Mural: conteúdo malicioso é escapado e não cria elementos', () => {
+      MuralModule.compromissos = [{
+        id: 1, nome: '<img src=x onerror="window.__xss=1">', papel: '<b>papel</b>', tipo: 't',
+        tipo_label: '<i>rotulo</i>', mensagem: '<script>window.__xss=1<\/script>', data: '01/01/2026', apoios: 2,
+      }];
+      MuralModule.filtroAtual = 'todos'; MuralModule.apoiados = new Set();
+      MuralModule.renderCompromissos();
+      const feed = document.getElementById('commitmentsFeed');
+      igual(feed.querySelectorAll('img, script, b, i').length, 0, 'elementos injetados:');
+      verdade(feed.textContent.includes('<img src=x'), 'texto deveria aparecer literalmente');
+      verdade(!window.__xss, 'script executado!');
+    });
+    teste('Mural: contadores e botão de apoio refletem o estado', () => {
+      MuralModule.compromissos = [
+        { id: 1, nome: 'Ana', papel: 'Docente Universitário(a)', tipo: 't', tipo_label: 'T', mensagem: 'Mensagem longa o suficiente', data: '01/01/2026', apoios: 2 },
+        { id: 2, nome: 'Bia', papel: 'Estudante', tipo: 't', tipo_label: 'T', mensagem: 'Outra mensagem longa o bastante', data: '02/01/2026', apoios: 3 },
+      ];
+      MuralModule.apoiados = new Set(['2']);
+      MuralModule.filtroAtual = 'Docente';
+      MuralModule.renderCompromissos();
+      igual(document.getElementById('totalCommitmentsCount').textContent, '2');
+      igual(document.getElementById('totalAlliesCount').textContent, '5');
+      igual(document.querySelectorAll('.commitment-card').length, 1, 'filtro:');
+      MuralModule.filtroAtual = 'todos'; MuralModule.renderCompromissos();
+      verdade(document.querySelector('[data-id="2"]').disabled, 'apoio já dado deve estar desabilitado');
+      verdade(!document.querySelector('[data-id="1"]').disabled);
+    });
+    teste('Mural: feed vazio mostra mensagem amigável', () => {
+      MuralModule.compromissos = []; MuralModule.renderCompromissos();
+      verdade(document.getElementById('commitmentsFeed').textContent.includes('Nenhum compromisso'));
+    });
+
+    // ---- Execução -----------------------------------------------------------
+    (async () => {
+      let falhas = 0;
+      const ul = document.getElementById('lista');
+      for (const { nome, fn } of casos) {
+        const li = document.createElement('li');
+        try { await fn(); li.className = 'ok'; li.textContent = `✔ ${nome}`; }
+        catch (e) { falhas++; li.className = 'falha'; li.textContent = `✘ ${nome} — ${e.message}`; }
+        ul.appendChild(li);
+      }
+      window.fetch = fetchOriginal;
+      const resumo = document.getElementById('resumo');
+      resumo.textContent = falhas === 0
+        ? `PASSOU: ${casos.length}/${casos.length} testes`
+        : `FALHOU: ${falhas} de ${casos.length} testes`;
+      resumo.className = falhas === 0 ? 'ok' : 'falha';
+      document.title = `${falhas === 0 ? 'PASS' : 'FAIL'} ${casos.length - falhas}/${casos.length}`;
+    })();
+  </script>
+</body>
+</html>

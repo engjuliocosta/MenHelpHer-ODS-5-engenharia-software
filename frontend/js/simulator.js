@@ -75,7 +75,7 @@ const SimulatorModule = {
           `).join('')}
         </div>
 
-        <div class="feedback-box" id="feedbackBox">
+        <div class="feedback-box" id="feedbackBox" role="status" aria-live="polite">
           <div class="feedback-title" id="feedbackTitle"></div>
           <div id="feedbackText"></div>
           <div class="feedback-ethics" id="feedbackEthics">
@@ -113,14 +113,10 @@ const SimulatorModule = {
     });
 
     // Atualizar visual do botão clicado
+    const nivel = Utils.classificarEscolha(selectedOption.pontos);
     const selectedBtn = document.getElementById(`btn-opt-${optionId}`);
-    if (selectedOption.pontos >= 8) {
-      selectedBtn.classList.add('selected-correct');
-    } else if (selectedOption.pontos <= 0) {
-      selectedBtn.classList.add('selected-wrong');
-    } else {
-      selectedBtn.classList.add('selected-partial');
-    }
+    selectedBtn.classList.add({ correto: 'selected-correct', parcial: 'selected-partial', erro: 'selected-wrong' }[nivel]);
+    selectedBtn.setAttribute('aria-pressed', 'true');
 
     // Exibir caixa de feedback
     const feedbackBox = document.getElementById('feedbackBox');
@@ -129,16 +125,13 @@ const SimulatorModule = {
 
     feedbackBox.classList.remove('correto', 'alerta', 'erro');
 
-    if (selectedOption.pontos >= 8) {
-      feedbackBox.classList.add('correto');
-      feedbackTitle.innerHTML = '✅ Decisão Inclusiva e Exemplar!';
-    } else if (selectedOption.pontos > 0) {
-      feedbackBox.classList.add('alerta');
-      feedbackTitle.innerHTML = '⚠️ Boa intenção, mas requer cuidado de processo';
-    } else {
-      feedbackBox.classList.add('erro');
-      feedbackTitle.innerHTML = '❌ Atenção: Esta postura reforça o viés inconsciente';
-    }
+    const titulos = {
+      correto: ['correto', '✅ Decisão Inclusiva e Exemplar!'],
+      parcial: ['alerta', '⚠️ Boa intenção, mas requer cuidado de processo'],
+      erro: ['erro', '❌ Atenção: Esta postura reforça o viés inconsciente'],
+    };
+    feedbackBox.classList.add(titulos[nivel][0]);
+    feedbackTitle.textContent = titulos[nivel][1];
 
     feedbackText.innerHTML = `<p>${selectedOption.feedback}</p>`;
     feedbackBox.classList.add('active');
@@ -154,20 +147,15 @@ const SimulatorModule = {
   },
 
   renderCompletionScreen(container) {
-    const maxScore = EQUI_DATA.cenariosSimulador.length * 10;
-    let badgeTitle = "Engenheiro(a) Aliado(a) da Equidade ODS 5";
-    let badgeDesc = "Você demonstrou alto discernimento ético, empatia e conhecimento das práticas que promovem a inclusão na Engenharia de Software.";
-
-    if (this.score < 25) {
-      badgeTitle = "Embaixador(a) em Formação de Equidade";
-      badgeDesc = "Você começou a reconhecer os vieses. Vale a pena revisar as diretrizes de ética ACM/IEEE e o Programa Meninas Digitais da SBC para aprofundar seu impacto!";
-    }
+    const totalScenarios = EQUI_DATA.cenariosSimulador.length;
+    const maxScore = totalScenarios * 10;
+    const { titulo: badgeTitle, descricao: badgeDesc } = Utils.classificarResultado(this.score, maxScore);
 
     container.innerHTML = `
       <div class="glass-card sim-finished-card">
         <div class="sim-trophy" aria-hidden="true">🎖️</div>
         <h2>Simulação Concluída com Sucesso!</h2>
-        <p>Você vivenciou 5 dilemas reais da rotina de times de desenvolvimento de software.</p>
+        <p>Você vivenciou ${totalScenarios} dilemas reais da rotina de times de desenvolvimento de software.</p>
         
         <div class="sim-result-badge">${badgeTitle}</div>
         <div style="font-size: 1.5rem; font-weight: 800; color: var(--color-ods5-light); margin-bottom: 0.8rem;">
