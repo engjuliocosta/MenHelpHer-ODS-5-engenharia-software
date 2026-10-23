@@ -2,6 +2,7 @@
 ## Plataforma de Sensibilização e Equidade de Gênero na Engenharia de Software
 
 [![CI / Testes e Qualidade](https://github.com/engjuliocosta/MenHelpHer-ODS-5-engenharia-software/actions/workflows/ci.yml/badge.svg)](https://github.com/engjuliocosta/MenHelpHer-ODS-5-engenharia-software/actions/workflows/ci.yml)
+[![Website](https://img.shields.io/badge/demo-online%20(GitHub%20Pages)-success?logo=github&logoColor=white)](https://engjuliocosta.github.io/MenHelpHer-ODS-5-engenharia-software/)
 ![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
 ![Tests](https://img.shields.io/badge/tests-112%20passed-success)
 ![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue)
@@ -14,6 +15,7 @@
 > **Ciclo de Desenvolvimento:** Iniciado em **PIT I** (Concepção, Design Thinking e Prototipação) e Concluído em **PIT II** (Arquitetura MVC, SGBD Relacional, 112 Testes Automatizados com 100% de Cobertura Backend e Conteinerização Docker)  
 > **Tema Central:** ODS 5 da ONU (Metas 5.1, 5.5 e 5.b da Agenda 2030)  
 > **Alinhamentos:** Programa Meninas Digitais (SBC), Movimento HeForShe / ElesPorElas (ONU Mulheres) e Código de Ética Profissional ACM/IEEE  
+> 🌐 **Demonstração Online (GitHub Pages):** [https://engjuliocosta.github.io/MenHelpHer-ODS-5-engenharia-software/](https://engjuliocosta.github.io/MenHelpHer-ODS-5-engenharia-software/)
 
 ---
 
