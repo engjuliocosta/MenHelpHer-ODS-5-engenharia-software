@@ -3,7 +3,7 @@
 
 > **Projeto Integrado Transdisciplinar (PIT I e PIT II)**  
 > **Curso:** Bacharelado em Engenharia de Software  
-> **Autor / Discente:** Julio Cezar Costa Alves (Julio Costa) — RGM: 39909549  
+> **Autor / Discente:** Julio Costa  
 > **Ciclo de Desenvolvimento:** Iniciado em **PIT I** (Concepção, Design Thinking e Prototipação) e Concluído em **PIT II** (Arquitetura MVC, SGBD Relacional, 56 Testes Automatizados e Validação com Pares)  
 > **Tema Central:** ODS 5 da ONU (Metas 5.1, 5.5 e 5.b da Agenda 2030)  
 > **Alinhamentos:** Programa Meninas Digitais (SBC), Movimento HeForShe / ElesPorElas (ONU Mulheres) e Código de Ética Profissional ACM/IEEE  
@@ -247,8 +247,7 @@ Para executar a suíte de testes do front-end no navegador (testes de JavaScript
 
 ## 📜 Informações Acadêmicas
 
-- **Discente:** Julio Cezar Costa Alves (Julio Costa)
-- **RGM:** 39909549
+- **Discente:** Julio Costa
 - **Curso:** Bacharelado em Engenharia de Software
 - **Disciplinas:** Projeto Integrado Transdisciplinar I e II (PIT I e PIT II)
 - **Ano de Conclusão:** 2026

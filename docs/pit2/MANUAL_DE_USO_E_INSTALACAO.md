@@ -3,7 +3,7 @@
 
 > **Projeto:** MenHelpHer — Plataforma de Equidade de Gênero na Engenharia de Software  
 > **Componente Curricular:** PIT I e PIT II  
-> **Autor:** Julio Cezar Costa Alves (Julio Costa) — RGM: 39909549  
+> **Autor:** Julio Costa
 
 ---
 

@@ -2,7 +2,7 @@
 ## Projeto MenHelpHer / EquiTech ODS 5 — PIT II
 
 > **Componente Curricular:** Projeto Integrado Transdisciplinar II (PIT II)  
-> **Discente:** Julio Cezar Costa Alves (Julio Costa) — RGM: 39909549  
+> **Discente:** Julio Costa  
 > **Objetivo:** Cumprimento da Situação-Problema 3 do PIT II, que exige a disponibilização da solução para 5 colegas de curso ou profissionais da área, a coleta formal de feedbacks por template padronizado e a incorporação de melhorias na engenharia do projeto.
 
 ---

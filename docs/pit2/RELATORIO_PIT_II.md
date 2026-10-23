@@ -4,7 +4,7 @@
 > **Instituição de Ensino Superior:** Bacharelado em Engenharia de Software  
 > **Componente Curricular:** Projeto Integrado Transdisciplinar II (PIT II)  
 > **Sequência Acadêmica:** Iniciado no PIT I (Concepção, Design Thinking e Prototipação) e Concluído no PIT II (Arquitetura MVC, SGBD, Testes de Integração e Validação por Pares)  
-> **Discente:** Julio Cezar Costa Alves (Julio Costa) — RGM: 39909549  
+> **Discente:** Julio Costa
 > **Tema Central:** ODS 5 da ONU (Agenda 2030 - Metas 5.1, 5.5 e 5.b)  
 > **Alinhamentos:** Programa Meninas Digitais (SBC), Movimento HeForShe (ONU Mulheres) e Código de Ética ACM/IEEE  
 

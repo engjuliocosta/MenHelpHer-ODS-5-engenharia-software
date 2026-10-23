@@ -2,7 +2,7 @@
 ## MenHelpHer / EquiTech ODS 5 — Conclusão PIT II
 
 > **Componente Curricular:** Projeto Integrado Transdisciplinar II (PIT II)  
-> **Discente:** Julio Cezar Costa Alves (Julio Costa) — RGM: 39909549  
+> **Discente:** Julio Costa
 > **Tempo Total Alvo:** Entre 4 minutos e 30 segundos e 5 minutos (rigorosamente dentro do limite acadêmico de até 5 minutos).  
 > **Formato de Entrega:** Vídeo narrado com captura de tela da aplicação em funcionamento local (`http://localhost:8000`).
 
